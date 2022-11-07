@@ -1,0 +1,10 @@
+email <input>
+password <input>
+<select name="permissions" id="permissions">
+  <option [(ngModel)]="permission">Customer</option>
+  <option [(ngModel)]="permission">Admin</option>
+  <option [(ngModel)]="permission">ShopKeeper</option>
+</select>
+
+<button (click)="onCreate()">Create</button>
+
