@@ -3,10 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
+import { AdministratorComponent } from './administrator/administrator.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AdministratorComponent
   ],
   imports: [
     BrowserModule,
