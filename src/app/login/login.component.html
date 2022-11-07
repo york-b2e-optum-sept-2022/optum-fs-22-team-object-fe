@@ -1,0 +1,8 @@
+<h1>Log in</h1>
+Email: <input [(ngModel)]="email">
+Password: <input [(ngModel)]="password">
+<br>
+{{loginError}}
+<br>
+<button (click)="onLogin()">Login</button>
+<button (click)="onCreate()">Create</button>
