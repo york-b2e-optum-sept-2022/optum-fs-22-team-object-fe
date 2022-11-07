@@ -1,1 +1,4 @@
-<app-create-admin></app-create-admin>
+<app-create-admin *ngIf="isCreated === true"> </app-create-admin>
+<app-login *ngIf="isCreated === false && isLogged === false"> </app-login>
+<app-main *ngIf="isLogged=== true"></app-main>
+

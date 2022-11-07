@@ -17,19 +17,14 @@ export class CreateAdminComponent implements OnInit, OnDestroy{
     )
   }
   sub1: Subscription;
-
   email!: string;
   password!: string;
   permission: string = "";
   errorNotSelecting: string = "";
   ERROR_FROM_HTTP_REQUEST: string = "";
-
-
   ngOnInit(): void {}
 
   onCreate() {
-    // console.log("Email: " + this.email);
-    // console.log("Password: " + this.password);
     if (this.permission === "") {
       this.errorNotSelecting = "PLEASE SELECT."
     }
@@ -59,5 +54,8 @@ export class CreateAdminComponent implements OnInit, OnDestroy{
 
   ngOnDestroy() {
     this.sub1.unsubscribe();
+  }
+  onCancel() {
+    this.shopKeeper.$isCreate.next(false);
   }
 }

@@ -5,11 +5,15 @@ import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
 import { CreateAdminComponent } from './create-admin/create-admin.component';
 import {FormsModule} from "@angular/forms";
+import { LoginComponent } from './login/login.component';
+import { MainComponent } from './main/main.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateAdminComponent
+    CreateAdminComponent,
+    LoginComponent,
+    MainComponent
   ],
   imports: [
     BrowserModule,
