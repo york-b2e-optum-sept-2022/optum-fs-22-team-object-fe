@@ -28,6 +28,8 @@ export class CreateAdminComponent implements OnInit, OnDestroy{
   ngOnInit(): void {}
 
   onCreate() {
+    // console.log("Email: " + this.email);
+    // console.log("Password: " + this.password);
     if (this.permission === "") {
       this.errorNotSelecting = "PLEASE SELECT."
     }

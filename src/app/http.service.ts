@@ -10,8 +10,8 @@ export class HttpService {
 
   constructor(private httpClient: HttpClient) {}
 
-  public createAccount(account: IAccount): Observable<IAccount> {
-    return this.httpClient.post("http://localhost:8080/api/user/register", account) as Observable<IAccount>;
+  public createAccount(account: IAccount): Observable<any> {
+    return this.httpClient.post("http://localhost:3000/api/user/register", account,{responseType: 'text'}) as Observable<any>;
   }
 
 

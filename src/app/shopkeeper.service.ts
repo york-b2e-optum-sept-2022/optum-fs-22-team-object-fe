@@ -9,39 +9,63 @@ import {BehaviorSubject} from "rxjs";
 })
 export class ShopkeeperService {
 
-  constructor(private httpService: HttpService) {}
-  private account!: IAccount;
+  constructor(private httpService: HttpService) {
+  }
+
   $create_Error = new BehaviorSubject<string>("");
   $isCreate = new BehaviorSubject<boolean>(false);
-  HTTPSTATUS_CONFLICT:string = "Account with email already exists";
+  HTTPSTATUS_CONFLICT: string = "Account with email already exists";
   HTTPSTATUS_FORBIDDEN: string = "Account creation of high permission must be made by administrator";
   OTHER_HTTP_ERROR: string = "PLEASE TRY AGAIN LATER.";
 
   public onCreateCustomer(email: string, password: string, permission: EPermission) {
-    this.account.email = email;
-    this.account.password = password;
-    this.account.permission = permission;
-    this.httpService.createAccount(this.account).subscribe({
+    let account: IAccount = {
+      email: email,
+      password: password,
+      permission: permission
+    };
+    //
+    // console.log("SHOPER: " + account.email);
+    // console.log("SHOPER: " + account.password);
+    // console.log("SHOPER: " + account.permission);
+
+    this.httpService.createAccount(account).subscribe({
       next: value => {
-        this.$isCreate.next(true);
+        // this.$isCreate.next(true);
+        // this.$create_Error.next("");
+        console.log("Success: " + value);
+
       }, error: err => {
+        console.log(err);
         if (err.status === 409) {
-        this.$create_Error.next(this.HTTPSTATUS_CONFLICT);
+          this.$create_Error.next(this.HTTPSTATUS_CONFLICT);
         }
-        if (err.status === 403) {
-        this.$create_Error.next(this.HTTPSTATUS_FORBIDDEN);
-        }
-        this.$create_Error.next(this.OTHER_HTTP_ERROR);
+
+        // if (err.status === 409) {
+        // this.$create_Error.next(this.HTTPSTATUS_CONFLICT);
+        // }
+        // if (err.status === 403) {
+        // this.$create_Error.next(this.HTTPSTATUS_FORBIDDEN);
+        // }
+        // this.$create_Error.next(this.OTHER_HTTP_ERROR);
       }
     })
-  }
+}
   public onCreateShopKeeper(email: string, password: string, permission: EPermission) {
-    this.account.email = email;
-    this.account.password = password;
-    this.account.permission = permission;
-    this.httpService.createAccount(this.account).subscribe({
+    let account: IAccount = {
+      email: email,
+      password: password,
+      permission: permission
+    };
+
+    // console.log("SHOPER1: " + account.email);
+    // console.log("SHOPER1: " + account.password);
+    // console.log("SHOPER1: " + account.permission);
+
+    this.httpService.createAccount(account).subscribe({
       next: value => {
         this.$isCreate.next(true);
+        this.$create_Error.next("");
         }, error: err => {
         if (err.status === 409) {
           this.$create_Error.next(this.HTTPSTATUS_CONFLICT);
@@ -54,12 +78,20 @@ export class ShopkeeperService {
     })
   }
   public onCreateAdmin(email: string, password: string, permission: EPermission) {
-    this.account.email = email;
-    this.account.password = password;
-    this.account.permission = permission;
-    this.httpService.createAccount(this.account).subscribe({
+    let account: IAccount = {
+      email: email,
+      password: password,
+      permission: permission
+    };
+
+    // console.log("SHOPER2: " + account.email);
+    // console.log("SHOPER2: " + account.password);
+    // console.log("SHOPER2: " + account.permission);
+
+    this.httpService.createAccount(account).subscribe({
       next: value => {
         this.$isCreate.next(true);
+        this.$create_Error.next("");
         }, error: err => {
         if (err.status === 409) {
           this.$create_Error.next(this.HTTPSTATUS_CONFLICT);
