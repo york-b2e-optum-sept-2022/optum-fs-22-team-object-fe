@@ -13,21 +13,33 @@ export class CreateAdminComponent implements OnInit {
 
   email!: string;
   password!: string;
-  permission!: string;
+  permission: string = "";
+  errorNotSelecting: string = "";
 
   ngOnInit(): void {}
 
   onCreate() {
-    console.log(this.permission);
+    if (this.permission === "") {
+      this.errorNotSelecting = "PLEASE SELECT."
+    }
+    if (this.permission === "Customer") {
+      this.createCustomer();
+    }
+    if (this.permission === "Admin") {
+      this.createAdmin();
+    }
+    if (this.permission === "ShopKeeper") {
+      this.createShopKeeper();
+    }
   }
 
-  CreateAdmin() {
-  asdadadad
+  createAdmin() {
+    console.log("ADMIN");
   }
-  CreateCustomer() {
-
+  createCustomer() {
+    console.log("Customer");
   }
-  CreateShopKeeper() {
-
+  createShopKeeper() {
+    console.log("SHOP KEEPER");
   }
 }
