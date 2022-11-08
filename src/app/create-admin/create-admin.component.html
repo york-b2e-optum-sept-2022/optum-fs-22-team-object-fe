@@ -2,16 +2,25 @@
 <h1>Create</h1>
 email <input [(ngModel)]="email">
 password <input [(ngModel)]="password">
-<select name="permissions" id="permissions" [(ngModel)]="permission">
-  <option value="Customer" selected>Customer</option>
-  <option value="Admin">Admin</option>
-  <option value="ShopKeeper">ShopKeeper</option>
-</select>
-{{errorNotSelecting}}
-{{ERROR_FROM_HTTP_REQUEST}}
+<!--<div *ngIf="permission_login">-->
+<!--  <select name="permissions" id="permissions" [(ngModel)]="permission">-->
+<!--    <option value="Customer"selected>Customer</option>-->
+<!--    <option value="Admin">Admin</option>-->
+<!--    <option value="ShopKeeper">ShopKeeper</option>-->
+<!--  </select>-->
+<!--  {{errorNotSelecting}}-->
+<!--  <button (click)="onCreate()">Create</button>-->
+<!--  <button (click)="onCancel()">Cancel</button>-->
+<!--</div>-->
+<div>
+  {{ERROR_FROM_HTTP_REQUEST}}
+  <button (click)="onCreate()">Create</button>
+  <button (click)="onCancel()">Cancel</button>
+</div>
 
-<button (click)="onCreate()">Create</button>
-<button (click)="onCancel()">Cancel</button>
+
+
+
 <!--&lt;!&ndash; HEAD &ndash;&gt;-->
 <!--<app-navigation></app-navigation>-->
 <!--<main role="main" class="container">-->

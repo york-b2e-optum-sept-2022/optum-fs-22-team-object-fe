@@ -16,6 +16,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { MainAdminComponent } from './main-admin/main-admin.component';
 import { MainShopKeeperComponent } from './main-shop-keeper/main-shop-keeper.component';
+import { ShopkeepCustomerAdminCreateComponent } from './shopkeep-customer-admin-create/shopkeep-customer-admin-create.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { MainShopKeeperComponent } from './main-shop-keeper/main-shop-keeper.com
     LoginComponent,
     MainComponent,
     MainAdminComponent,
-    MainShopKeeperComponent
+    MainShopKeeperComponent,
+    ShopkeepCustomerAdminCreateComponent
   ],
   imports: [
     BrowserModule,

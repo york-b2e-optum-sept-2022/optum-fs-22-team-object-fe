@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import {HttpService} from "./http.service";
 import {EPermission} from "./enum/EPermission";
 import {IAccount} from "./interfaces/IAccount";
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, first, Subject} from "rxjs";
 import {IAccountDisplay} from "./interfaces/IAccountDisplay";
+import {IDelete} from "./interfaces/IDelete";
 
 @Injectable({
   providedIn: 'root'
@@ -19,10 +20,13 @@ export class ShopkeeperService {
   HTTPSTATUS_FORBIDDEN: string = "Account creation of high permission must be made by administrator";
   OTHER_HTTP_ERROR: string = "PLEASE TRY AGAIN LATER.";
   LOGIN_ERROR: string = "Please try it again. Make sure your email and password are correct."
+  DELETE_ERROR: string = "You cannot delete your own account as an admin."
+  DELETE_ERROR1: string = "Could not find account with that email"
   $isLogged = new BehaviorSubject<boolean>(false);
   $currentID = new BehaviorSubject<string>("");
   $permission = new BehaviorSubject<string>("");
-  $array = new BehaviorSubject<IAccount[] | null>(null);
+  $array = new Subject<IAccount[]>();
+  $main_Admin_Create = new BehaviorSubject<boolean>(false);
 
 
   public onCreateCustomer(email: string, password: string, permission: EPermission) {
@@ -38,6 +42,7 @@ export class ShopkeeperService {
       next: value => {
         this.$isCreate.next(false);
         this.$create_Error.next("");
+
         console.log("Success: " + value);
       }, error: err => {
         if (err.status === 409) {
@@ -113,13 +118,17 @@ export class ShopkeeperService {
     }
     this.httpService.loginAccount(account).subscribe({
       next: value => {
+
         this.$currentID.next(value); //getting the current ID when they log in.
         this.$isLogged.next(true)
+
         this.httpService.getMyPermissionLevel(value).subscribe({ // getting user's permission.
           next: value1 => {
             this.$permission.next(value1);
           }, error: err => {console.log(err)}
         });
+
+
       },error: err => {
         if (err.status === 400) {
           this.$create_Error.next(this.LOGIN_ERROR);
@@ -136,7 +145,34 @@ export class ShopkeeperService {
       },error: err => {}
     });
   }
-  // public deleteAccount()
+
+
+  public deleteAccount(account: IDelete) {
+    this.httpService.deleteAccount(account).pipe(first()).subscribe({
+      next: value => {
+        console.log(value);
+        this.getAllAccounts(account.userID);
+      },error: err => {
+        if (err.status === 403) {
+          this.$create_Error.next(this.DELETE_ERROR);
+          return;
+        }
+        if (err.status === 404) {
+          this.$create_Error.next(this.DELETE_ERROR1)
+          return;
+        }
+        this.$create_Error.next("You do not have permission to delete another account");
+      }
+    })
+  }
+  public findAccount(userID: string,email:string) {
+   this.httpService.findAccount(userID,email).pipe(first()).subscribe({
+     next: value => {
+       console.log(value);
+       return value;
+     }, error: err => {console.log(err)}
+   })
+  }
 
 
 

@@ -26,7 +26,7 @@ export class HttpService {
   public updateLocalAccount(account: IAccount ): Observable<string> {
     //Make sure there's the userID that they want to update.
     //Have to write an error that if they can't change their own account.
-    //this is updating customer/shop keeper accounts
+    //this is updating customer/shopkeeper accounts
 
     return this.httpClient.put("http://localhost:3000/api/user/update", account, {responseType: 'text'}) as Observable<string>
   }

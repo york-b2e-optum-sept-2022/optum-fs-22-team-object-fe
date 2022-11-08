@@ -15,31 +15,45 @@ export class CreateAdminComponent implements OnInit, OnDestroy{
     this.sub1 = this.shopKeeper.$create_Error.subscribe({
         next: value => {this.ERROR_FROM_HTTP_REQUEST = value},error: err => {}
       }
-    )
+    );
+    this.shopKeeper.$permission.subscribe({
+      next: value => {
+        console.log("FROM HERE: " + value)
+        this.permission_login = true;
+      }
+    })
   }
+
+  permission_login: boolean = false;
+
   sub1: Subscription;
   email!: string;
   password!: string;
   permission: string = "";
   errorNotSelecting: string = "";
   ERROR_FROM_HTTP_REQUEST: string = "";
+
+
+
   ngOnInit(): void {}
 
   onCreate() {
-    if (this.permission === "") {
-      this.errorNotSelecting = "PLEASE SELECT."
-    }
-    if (this.permission === "Customer") {
-      this.errorNotSelecting = ""
-      this.createCustomer();
-    }
-    if (this.permission === "Admin") {
-      this.errorNotSelecting = ""
-      this.createAdmin();
-    }
-    if (this.permission === "ShopKeeper") {
-      this.errorNotSelecting = ""
-      this.createShopKeeper();
+    if (this.permission_login) {
+      if (this.permission === "") {
+        this.errorNotSelecting = "PLEASE SELECT."
+      }
+      if (this.permission === "Customer") {
+        this.errorNotSelecting = ""
+        this.createCustomer();
+      }
+      if (this.permission === "Admin") {
+        this.errorNotSelecting = ""
+        this.createAdmin();
+      }
+      if (this.permission === "ShopKeeper") {
+        this.errorNotSelecting = ""
+        this.createShopKeeper();
+      }
     }
   }
 

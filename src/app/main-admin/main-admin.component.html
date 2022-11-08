@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!switchCreate">
   <div>
     <!-- Show lists of accounts-->
     <h1>Accounts</h1>
@@ -15,7 +15,7 @@
   </div>
   <div>
     <!-- Create-->
-    <button>Create</button>
+    <button (click)="onCreate()">CREATE</button>
   </div>
 
   <div>
@@ -29,4 +29,9 @@
 </div>
 <br>
 <button (click)="onLogOut()">Log Out</button>
+
+<div *ngIf="switchCreate">
+  <app-shopkeep-customer-admin-create></app-shopkeep-customer-admin-create>
+  <button (click)="onCancel()">Cancel</button>
+</div>
 
