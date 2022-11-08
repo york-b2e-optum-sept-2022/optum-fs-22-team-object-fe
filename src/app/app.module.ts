@@ -8,7 +8,7 @@ import { CreateAdminComponent } from './create-admin/create-admin.component';
 import {FormsModule} from "@angular/forms";
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
-import { CreateAdminComponent } from './create-admin/create-admin.component';
+
 import { AppRoutingModule } from './app-routing.module';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
@@ -19,16 +19,14 @@ import {ReactiveFormsModule} from "@angular/forms";
   declarations: [
     AppComponent,
     CreateAdminComponent,
-    NavigationComponent
-    CreateAdminComponent,
+    NavigationComponent,
     LoginComponent,
     MainComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
-    HttpClientModule,
+    FormsModule,
     AppRoutingModule,
     MDBBootstrapModule,
     NgbModule,

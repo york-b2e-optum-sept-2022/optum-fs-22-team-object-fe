@@ -1,18 +1,14 @@
-<<<<<<< HEAD
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {EPermission} from "../enum/EPermission";
 import {ShopkeeperService} from "../shopkeeper.service";
 import {Subscription} from "rxjs";
-=======
-import { Component, OnInit } from '@angular/core';
->>>>>>> visual-dano
 
 @Component({
   selector: 'app-create-admin',
   templateUrl: './create-admin.component.html',
   styleUrls: ['./create-admin.component.css']
 })
-<<<<<<< HEAD
+
 export class CreateAdminComponent implements OnInit, OnDestroy{
 
   constructor(private shopKeeper: ShopkeeperService) {
@@ -63,12 +59,6 @@ export class CreateAdminComponent implements OnInit, OnDestroy{
   onCancel() {
     this.shopKeeper.$create_Error.next("");
     this.shopKeeper.$isCreate.next(false);
-=======
-export class CreateAdminComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
   }
 
   displayStyle: any;
@@ -79,6 +69,5 @@ export class CreateAdminComponent implements OnInit {
 
   closePopup() {
     this.displayStyle = "none";
->>>>>>> visual-dano
   }
 }
