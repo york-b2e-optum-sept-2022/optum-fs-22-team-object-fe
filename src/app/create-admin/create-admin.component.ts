@@ -12,4 +12,13 @@ export class CreateAdminComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  displayStyle: any;
+
+  openPopup() {
+    this.displayStyle = "block";
+  }
+
+  closePopup() {
+    this.displayStyle = "none";
+  }
 }

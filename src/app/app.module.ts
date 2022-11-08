@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
@@ -8,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NavigationComponent } from './navigation/navigation.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { NavigationComponent } from './navigation/navigation.component';
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule,
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
