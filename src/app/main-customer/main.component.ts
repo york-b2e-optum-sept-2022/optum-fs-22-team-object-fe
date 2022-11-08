@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ShopkeeperService} from "../shopkeeper.service";
 
 @Component({
   selector: 'app-main',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainComponent implements OnInit {
 
-  constructor() { }
+  constructor(private shopKeeper: ShopkeeperService) { }
 
   ngOnInit(): void {
   }
 
+  onLogOut() {
+    this.shopKeeper.$permission.next("");
+    this.shopKeeper.$isLogged.next(false);
+  }
 }

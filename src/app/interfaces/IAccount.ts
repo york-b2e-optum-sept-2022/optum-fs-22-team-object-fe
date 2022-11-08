@@ -1,4 +1,3 @@
-import {EPermission} from "../enum/EPermission";
 
 export interface IAccount {
   email: string;
