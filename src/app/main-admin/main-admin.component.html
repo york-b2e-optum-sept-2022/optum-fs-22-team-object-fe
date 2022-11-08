@@ -1,0 +1,32 @@
+<div>
+  <div>
+    <!-- Show lists of accounts-->
+    <h1>Accounts</h1>
+    <div *ngFor="let element of accounts; let i = index;">
+      <div>
+        <h4>Email: {{element.email}}</h4>
+        <button (click)="onDelete(i)">Delete</button>
+        <button (click)="onEdit(i)">Edit</button>
+      </div>
+
+      <!-- Display array of accounts.-->
+    </div>
+
+  </div>
+  <div>
+    <!-- Create-->
+    <button>Create</button>
+  </div>
+
+  <div>
+    <!-- Edit-->
+  </div>
+
+  <div>
+    <!-- Delete-->
+  </div>
+
+</div>
+<br>
+<button (click)="onLogOut()">Log Out</button>
+

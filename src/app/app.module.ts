@@ -7,13 +7,15 @@ import {HttpClientModule} from "@angular/common/http";
 import { CreateAdminComponent } from './create-admin/create-admin.component';
 import {FormsModule} from "@angular/forms";
 import { LoginComponent } from './login/login.component';
-import { MainComponent } from './main/main.component';
+import { MainComponent } from './main-customer/main.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { NavigationComponent } from './navigation/navigation.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { MainAdminComponent } from './main-admin/main-admin.component';
+import { MainShopKeeperComponent } from './main-shop-keeper/main-shop-keeper.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import {ReactiveFormsModule} from "@angular/forms";
     CreateAdminComponent,
     NavigationComponent,
     LoginComponent,
-    MainComponent
+    MainComponent,
+    MainAdminComponent,
+    MainShopKeeperComponent
   ],
   imports: [
     BrowserModule,
