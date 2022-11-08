@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1>Create</h1>
 email <input [(ngModel)]="email">
 password <input [(ngModel)]="password">
@@ -11,3 +12,46 @@ password <input [(ngModel)]="password">
 
 <button (click)="onCreate()">Create</button>
 <button (click)="onCancel()">Cancel</button>
+=======
+<app-navigation></app-navigation>
+<main role="main" class="container">
+
+  <button type="button" class="btn btn-primary mx-2" (click)="openPopup()">Create Admin</button>
+  <button type="button" class="btn btn-primary mx-2" (click)="openPopup()">Create Shopkeeper</button>
+
+  <!--  -->
+  <div class="modal" tabindex="-1" role="dialog"
+       [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">New Admin</h4>
+        </div>
+        <div class="modal-body">
+          <!-- defines and group the set of controls used in this component -->
+          <form>
+            <div class="mb-3">
+              <!-- uses formControl to bind values-->
+              <label class="form-label">Email</label>
+              <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1"  placeholder="Password">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="close" class="btn btn-secondary" (click)="closePopup()">Close</button>
+          <!-- binds to the formControl event to update and create new values -->
+          <button  type="button" class="btn btn-primary" >Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+</main><!-- /.container -->
+>>>>>>> visual-dano

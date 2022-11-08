@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 
 import { AppComponent } from './app.component';
 import {HttpClientModule} from "@angular/common/http";
@@ -7,10 +8,18 @@ import { CreateAdminComponent } from './create-admin/create-admin.component';
 import {FormsModule} from "@angular/forms";
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
+import { CreateAdminComponent } from './create-admin/create-admin.component';
+import { AppRoutingModule } from './app-routing.module';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { NavigationComponent } from './navigation/navigation.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
     AppComponent,
+    CreateAdminComponent,
+    NavigationComponent
     CreateAdminComponent,
     LoginComponent,
     MainComponent
@@ -19,8 +28,14 @@ import { MainComponent } from './main/main.component';
     BrowserModule,
     HttpClientModule,
     FormsModule
+    HttpClientModule,
+    AppRoutingModule,
+    MDBBootstrapModule,
+    NgbModule,
+    ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { }
