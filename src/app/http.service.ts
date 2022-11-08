@@ -4,6 +4,7 @@ import {IAccount} from "./interfaces/IAccount";
 import {Observable} from "rxjs";
 import {IAdmin} from "./interfaces/IAdmin";
 import {IDelete} from "./interfaces/IDelete";
+import {IAccountDisplay} from "./interfaces/IAccountDisplay";
 
 @Injectable({
   providedIn: 'root'

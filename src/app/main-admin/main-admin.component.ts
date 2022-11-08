@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ShopkeeperService} from "../shopkeeper.service";
 import {IAccount} from "../interfaces/IAccount";
+import {IAccountDisplay} from "../interfaces/IAccountDisplay";
 
 @Component({
   selector: 'app-main-admin',
@@ -9,8 +10,21 @@ import {IAccount} from "../interfaces/IAccount";
 })
 export class MainAdminComponent implements OnInit, OnDestroy{
 
-  constructor(private shopKeeper: ShopkeeperService) {console.log("MAIN ADMIN")}
-  accounts: IAccount[] = []!;
+
+  constructor(private shopKeeper: ShopkeeperService) {
+    this.shopKeeper.$currentID.subscribe({
+      next: value => {
+        this.shopKeeper.getAllAccounts(value);
+      }
+    })
+    this.shopKeeper.$array.subscribe({
+      next: value => {console.log(value)
+      this.accounts = value;
+      },error: err => {}
+    })
+  }
+
+  accounts!: IAccount[] | null;
 
   ngOnInit(): void {
   }
@@ -20,5 +34,13 @@ export class MainAdminComponent implements OnInit, OnDestroy{
     this.shopKeeper.$isLogged.next(false);
   }
   ngOnDestroy() {
+  }
+
+  onDelete(i: number) {
+    
+  }
+
+  onEdit(i: number) {
+    
   }
 }

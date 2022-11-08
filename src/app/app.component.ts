@@ -24,9 +24,11 @@ export class AppComponent implements OnDestroy{
     this.sub1=this.shopKeeper.$isCreate.subscribe({
       next: value => {this.isCreated = value},error: err => {}
     });
+
     this.sub2 = this.shopKeeper.$isLogged.subscribe({
       next: value => {this.isLogged = value}, error: err => {console.log(err)}
-    })
+    });
+
     this.sub3 = this.shopKeeper.$permission.subscribe({
       next: value => {
         if (value === "ADMIN") {
