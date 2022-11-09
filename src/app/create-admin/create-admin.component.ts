@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {EPermission} from "../enum/EPermission";
 import {ShopkeeperService} from "../shopkeeper.service";
 import {Subscription} from "rxjs";
+import {IAccount} from "../interfaces/IAccount";
 
 @Component({
   selector: 'app-create-admin',
@@ -35,37 +36,37 @@ export class CreateAdminComponent implements OnInit, OnDestroy{
 
 
 
+
   ngOnInit(): void {}
 
   onCreate() {
-    if (this.permission_login) {
-      if (this.permission === "") {
-        this.errorNotSelecting = "PLEASE SELECT."
-      }
-      if (this.permission === "Customer") {
-        this.errorNotSelecting = ""
-        this.createCustomer();
-      }
-      if (this.permission === "Admin") {
-        this.errorNotSelecting = ""
-        this.createAdmin();
-      }
-      if (this.permission === "ShopKeeper") {
-        this.errorNotSelecting = ""
-        this.createShopKeeper();
-      }
+    // if (this.permission_login) {
+    //   if (this.permission === "") {
+    //     this.errorNotSelecting = "PLEASE SELECT."
+    //   }
+    //   if (this.permission === "Customer") {
+    //     this.errorNotSelecting = ""
+    //     this.createCustomer();
+    //   }
+    //   if (this.permission === "Admin") {
+    //     this.errorNotSelecting = ""
+    //     this.createAdmin();
+    //   }
+    //   if (this.permission === "ShopKeeper") {
+    //     this.errorNotSelecting = ""
+    //     this.createShopKeeper();
+    //   }
+    // }
+    const account: IAccount = {
+      email: this.email,
+      password: this.password,
+      PermissionLevel: null,
+      userID: "",
+      permission: EPermission.CUSTOMER
     }
+    this.shopKeeper.onCreateCustomer(account)
   }
 
-  createAdmin() {
-    this.shopKeeper.onCreateAdmin(this.email,this.password,EPermission.ADMIN);
-  }
-  createCustomer() {
-    this.shopKeeper.onCreateCustomer(this.email,this.password,EPermission.CUSTOMER);
-  }
-  createShopKeeper() {
-    this.shopKeeper.onCreateShopKeeper(this.email,this.password,EPermission.SHOPKEEPER);
-  }
 
   ngOnDestroy() {
     this.sub1.unsubscribe();

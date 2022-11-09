@@ -54,6 +54,10 @@ export class MainAdminComponent implements OnInit, OnDestroy{
   }
 
   onEdit(i: number) {
+    console.log(this.accounts);
+    for(let i = 0; i < this.accounts.length; i++) {
+      console.log(this.accounts[i].PermissionLevel);
+    }
 
     console.log("EDIT : " + this.accounts[i].email);
   }

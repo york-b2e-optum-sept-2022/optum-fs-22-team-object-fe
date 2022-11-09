@@ -4,7 +4,11 @@
     <h1>Accounts</h1>
     <div *ngFor="let element of accounts; let i = index;">
       <div>
+        <hr>
         <h4>Email: {{element.email}}</h4>
+        <h5>Permission: {{element.PermissionLevel}}</h5>
+
+        <hr>
         <button (click)="onDelete(i)">Delete</button>
         <button (click)="onEdit(i)">Edit</button>
       </div>
@@ -28,10 +32,15 @@
 
 </div>
 <br>
-<button (click)="onLogOut()">Log Out</button>
-
+<div>
+  <button (click)="onLogOut()">Log Out</button>
+</div>
+<br>
 <div *ngIf="switchCreate">
   <app-shopkeep-customer-admin-create></app-shopkeep-customer-admin-create>
-  <button (click)="onCancel()">Cancel</button>
+  <div>
+    <button (click)="onCancel()">Cancel</button>
+  </div>
+
 </div>
 
