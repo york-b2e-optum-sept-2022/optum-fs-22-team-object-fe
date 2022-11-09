@@ -12,7 +12,7 @@ const routes: Routes = [
   {path: 'administrator', component: CreateAdminComponent},
   {path: 'login', component: LoginComponent},
   {path: 'main-admin', component: MainAdminComponent},
-  {path: 'main-shopkeepeer', component: MainShopKeeperComponent}
+  {path: 'main-shopkeeper', component: MainShopKeeperComponent}
 ]
 
 @NgModule({
