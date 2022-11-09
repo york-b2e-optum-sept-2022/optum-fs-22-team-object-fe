@@ -4,6 +4,6 @@ export interface IAccount {
   email: string;
   password: string;
   PermissionLevel: EPermission | null;
-  userID: String;
+  userID: string;
   permission: String;
 }

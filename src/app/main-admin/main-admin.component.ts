@@ -33,8 +33,7 @@ export class MainAdminComponent implements OnInit, OnDestroy{
 
 
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onLogOut() {
     this.shopKeeper.$permission.next("");
@@ -48,24 +47,18 @@ export class MainAdminComponent implements OnInit, OnDestroy{
       email: this.accounts[i].email,
       userID: this.currentID
     }
-
     this.shopKeeper.deleteAccount(iDelete);
-    console.log("DELETE : " + this.accounts[i].email);
   }
 
   onEdit(i: number) {
-    console.log(this.accounts);
-    for(let i = 0; i < this.accounts.length; i++) {
-      console.log(this.accounts[i].PermissionLevel);
-    }
 
-    console.log("EDIT : " + this.accounts[i].email);
+
+
+
   }
-
   onCreate() {
     this.shopKeeper.$main_Admin_Create.next(true);
   }
-
   onCancel() {
     this.shopKeeper.$main_Admin_Create.next(false);
   }

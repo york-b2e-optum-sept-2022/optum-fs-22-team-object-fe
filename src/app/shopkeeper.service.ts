@@ -30,13 +30,12 @@ export class ShopkeeperService {
 
   public onCreateCustomer(account:IAccount) {
    //Create for customer is working great.
-    console.log("FROM ME: " + account.PermissionLevel);
+
     this.httpService.createAccount(account).subscribe({
       next: value => {
         this.$isCreate.next(false);
         this.$create_Error.next("");
-
-        console.log("Success: " + value);
+        this.getAllAccounts(account.userID);
       }, error: err => {
         if (err.status === 409) {
           this.$create_Error.next(this.HTTPSTATUS_CONFLICT);
@@ -64,7 +63,6 @@ export class ShopkeeperService {
     }
     this.httpService.loginAccount(account).subscribe({
       next: value => {
-
         this.$currentID.next(value); //getting the current ID when they log in.
         this.$isLogged.next(true)
 
@@ -73,8 +71,6 @@ export class ShopkeeperService {
             this.$permission.next(value1);
           }, error: err => {console.log(err)}
         });
-
-
       },error: err => {
         if (err.status === 400) {
           this.$create_Error.next(this.LOGIN_ERROR);
@@ -91,7 +87,6 @@ export class ShopkeeperService {
       },error: err => {}
     });
   }
-
 
   public deleteAccount(account: IDelete) {
     this.httpService.deleteAccount(account).pipe(first()).subscribe({
