@@ -1,6 +1,7 @@
 import {Component, OnDestroy} from '@angular/core';
 import {ShopkeeperService} from "./shopkeeper.service";
 import {Subscription} from "rxjs";
+import {AdminService} from "./admin.service";
 
 @Component({
   selector: 'app-root',
@@ -19,17 +20,16 @@ export class AppComponent implements OnDestroy{
   isAdmin: boolean = false;
   isShopKeeper: boolean = false;
 
-
-  constructor(private shopKeeper: ShopkeeperService) {
-    this.sub1=this.shopKeeper.$isCreate.subscribe({
+  constructor(private adminService: AdminService) {
+    this.sub1=this.adminService.$isCreate.subscribe({
       next: value => {this.isCreated = value},error: err => {}
     });
 
-    this.sub2 = this.shopKeeper.$isLogged.subscribe({
+    this.sub2 = this.adminService.$isLogged.subscribe({
       next: value => {this.isLogged = value}, error: err => {console.log(err)}
     });
 
-    this.sub3 = this.shopKeeper.$permission.subscribe({
+    this.sub3 = this.adminService.$permission.subscribe({
       next: value => {
         if (value === "ADMIN") {
           this.isCustomer = false;

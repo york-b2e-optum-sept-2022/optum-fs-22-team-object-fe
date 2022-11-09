@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ShopkeeperService} from "../shopkeeper.service";
 import {IAccount} from "../interfaces/IAccount";
 import {EPermission} from "../enum/EPermission";
+import {AdminService} from "../admin.service";
 
 @Component({
   selector: 'app-shopkeep-customer-admin-create',
@@ -14,11 +15,11 @@ export class ShopkeepCustomerAdminCreateComponent implements OnInit {
   password: string = "";
   currentID: string = "";
 
-  constructor(private shopKeeper: ShopkeeperService) {
-    this.shopKeeper.$currentID.subscribe({
+  constructor(private adminService: AdminService) {
+    this.adminService.$currentID.subscribe({
       next: value => {
         this.currentID = value
-        this.shopKeeper.getAllAccounts(value);
+        this.adminService.getAllAccounts(value);
       }
     });
 
@@ -52,7 +53,7 @@ export class ShopkeepCustomerAdminCreateComponent implements OnInit {
      account.PermissionLevel = EPermission.ADMIN;
      account.permission = EPermission.ADMIN
      console.log(account.PermissionLevel);
-     this.shopKeeper.onCreateCustomer(account);
+     this.adminService.onCreateCustomer(account);
 
 
    }
@@ -62,7 +63,7 @@ export class ShopkeepCustomerAdminCreateComponent implements OnInit {
       account.PermissionLevel = EPermission.CUSTOMER;
       account.permission = EPermission.CUSTOMER
       console.log(account.PermissionLevel);
-      this.shopKeeper.onCreateCustomer(account);
+      this.adminService.onCreateCustomer(account);
 
     }
     if (this.permission  === "ShopKeeper") {
@@ -71,7 +72,7 @@ export class ShopkeepCustomerAdminCreateComponent implements OnInit {
       account.PermissionLevel = EPermission.SHOPKEEPER;
       account.permission = EPermission.SHOPKEEPER;
       console.log(account.PermissionLevel);
-      this.shopKeeper.onCreateCustomer(account);
+      this.adminService.onCreateCustomer(account);
     }
 
   }

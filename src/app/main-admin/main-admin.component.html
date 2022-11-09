@@ -1,5 +1,11 @@
 <div *ngIf="!switchCreate && !isEdited">
   <div>
+  <!-- Create-->
+  <button (click)="onCreate()">CREATE</button>
+    <button (click)="onLogOut()">Log Out</button>
+</div>
+
+  <div>
     <!-- Show lists of accounts-->
     <h1>Accounts</h1>
     <div *ngFor="let element of accounts; let i = index;">
@@ -16,10 +22,7 @@
     </div>
 
   </div>
-  <div>
-    <!-- Create-->
-    <button (click)="onCreate()">CREATE</button>
-  </div>
+
 
   <div>
     <!-- Edit-->
@@ -29,10 +32,6 @@
     <!-- Delete-->
   </div>
 
-</div>
-<br>
-<div>
-  <button (click)="onLogOut()">Log Out</button>
 </div>
 <br>
 <div *ngIf="switchCreate">

@@ -1,1 +1,18 @@
-<button (click)="onLogOut()">Log Out</button>
+<div>
+  <button (click)="viewInventory()">View: Inventory</button>
+  <button (click)="viewProduct()">View: Product Categories</button>
+</div>
+<br>
+<div *ngIf="viewSwitch === true">
+  <h1>HELLO WORLD2</h1>
+</div>
+<br>
+<div *ngIf="viewSwitch === false">
+  <h1>HELLO WORLD1</h1>
+</div>
+
+<br>
+<div>
+  <button (click)="onLogOut()">Log Out</button>
+</div>
+

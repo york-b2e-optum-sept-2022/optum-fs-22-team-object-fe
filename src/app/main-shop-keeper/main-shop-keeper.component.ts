@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ShopkeeperService} from "../shopkeeper.service";
+import {AdminService} from "../admin.service";
 
 @Component({
   selector: 'app-main-shop-keeper',
@@ -8,13 +9,21 @@ import {ShopkeeperService} from "../shopkeeper.service";
 })
 export class MainShopKeeperComponent implements OnInit {
 
-  constructor(private shopKeeper: ShopkeeperService) { }
+  constructor(private adminService: AdminService, private shopKeeper: ShopkeeperService) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onLogOut() {
-    this.shopKeeper.$permission.next("");
-    this.shopKeeper.$isLogged.next(false);
+    this.adminService.$permission.next("");
+    this.adminService.$isLogged.next(false);
+  }
+  viewSwitch!: boolean;
+
+  viewInventory() {
+    this.viewSwitch = true;
+  }
+
+  viewProduct() {
+    this.viewSwitch = false;
   }
 }
