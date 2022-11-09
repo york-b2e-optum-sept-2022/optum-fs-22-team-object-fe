@@ -32,18 +32,24 @@ export class AppComponent implements OnDestroy{
     this.sub3 = this.shopKeeper.$permission.subscribe({
       next: value => {
         if (value === "ADMIN") {
+          this.isCustomer = false;
+          this.isShopKeeper = false;
           this.isAdmin = true;
           console.log(value);
           return;
         }
         if (value === "CUSTOMER") {
           this.isCustomer = true;
+          this.isShopKeeper = false;
+          this.isAdmin = false;
           console.log(value);
           return;
         }
         if (value === "SHOPKEEPER") {
           console.log("BOOLEAN: " + this.isShopKeeper)
           this.isShopKeeper = true;
+          this.isCustomer = false;
+          this.isAdmin = false;
           console.log(value);
           return;
         }

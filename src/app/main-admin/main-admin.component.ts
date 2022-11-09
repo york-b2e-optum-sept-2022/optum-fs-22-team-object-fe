@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ShopkeeperService} from "../shopkeeper.service";
 import {IAccount} from "../interfaces/IAccount";
 import {IAccountDisplay} from "../interfaces/IAccountDisplay";
+import {IDelete} from "../interfaces/IDelete";
 
 @Component({
   selector: 'app-main-admin',
@@ -9,25 +10,30 @@ import {IAccountDisplay} from "../interfaces/IAccountDisplay";
   styleUrls: ['./main-admin.component.css']
 })
 export class MainAdminComponent implements OnInit, OnDestroy{
-
-
   constructor(private shopKeeper: ShopkeeperService) {
     this.shopKeeper.$currentID.subscribe({
       next: value => {
+        this.currentID = value;
         this.shopKeeper.getAllAccounts(value);
       }
     })
     this.shopKeeper.$array.subscribe({
-      next: value => {console.log(value)
-      this.accounts = value;
+      next: value => {
+        this.accounts = value;
       },error: err => {}
+    })
+    this.shopKeeper.$main_Admin_Create.subscribe({
+      next: value => {this.switchCreate = value}
     })
   }
 
-  accounts!: IAccount[] | null;
+  currentID: string = "";
+  accounts!: IAccount[];
+  switchCreate!: boolean;
 
-  ngOnInit(): void {
-  }
+
+
+  ngOnInit(): void {}
 
   onLogOut() {
     this.shopKeeper.$permission.next("");
@@ -37,10 +43,23 @@ export class MainAdminComponent implements OnInit, OnDestroy{
   }
 
   onDelete(i: number) {
-    
+    const iDelete: IDelete = {
+      email: this.accounts[i].email,
+      userID: this.currentID
+    }
+    this.shopKeeper.deleteAccount(iDelete);
   }
 
   onEdit(i: number) {
-    
+
+
+
+
+  }
+  onCreate() {
+    this.shopKeeper.$main_Admin_Create.next(true);
+  }
+  onCancel() {
+    this.shopKeeper.$main_Admin_Create.next(false);
   }
 }
