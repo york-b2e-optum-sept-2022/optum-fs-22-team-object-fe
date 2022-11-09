@@ -12,7 +12,7 @@ export class ShopkeepCustomerAdminCreateComponent implements OnInit {
   permission: string = "";
   email: string = "";
   password: string = "";
-  currentID:string = "";
+  currentID: string = "";
 
   constructor(private shopKeeper: ShopkeeperService) {
     this.shopKeeper.$currentID.subscribe({
@@ -21,14 +21,18 @@ export class ShopkeepCustomerAdminCreateComponent implements OnInit {
         this.shopKeeper.getAllAccounts(value);
       }
     });
-    this.shopKeeper.$array.subscribe({
-      next: value => {},error: err => {}
-    })
 
-
-
-
+    // this.shopKeeper.$onEdit.subscribe({
+    //   next: value => {this.isEdited = value},error: err => {}
+    // })
+    // this.shopKeeper.$index.subscribe({
+    //   next: value => {this.index = value},error: err => {}
+    // })
   }
+
+
+
+
 
   ngOnInit(): void {}
 
@@ -38,7 +42,8 @@ export class ShopkeepCustomerAdminCreateComponent implements OnInit {
       password: this.password,
       PermissionLevel: null,
       userID: this.currentID,
-       permission: ""
+       permission: "",
+       id: ""
     }
 
    if (this.permission  === "Admin") {

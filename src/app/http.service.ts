@@ -4,7 +4,8 @@ import {IAccount} from "./interfaces/IAccount";
 import {Observable} from "rxjs";
 import {IAdmin} from "./interfaces/IAdmin";
 import {IDelete} from "./interfaces/IDelete";
-import {IAccountDisplay} from "./interfaces/IAccountDisplay";
+import {IUpdateLocal} from "./interfaces/IUpdateLocal";
+
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class HttpService {
   public getMyPermissionLevel(userID: string): Observable<string> {
     return this.httpClient.get(`http://localhost:3000/api/user/permission?userID=${userID}`, {responseType: 'text'}) as Observable<string>;
   }
-  public updateLocalAccount(account: IAccount ): Observable<string> {
+  public updateLocalAccount(account: IUpdateLocal ): Observable<string> {
     //Make sure there's the userID that they want to update.
     //Have to write an error that if they can't change their own account.
     //this is updating customer/shopkeeper accounts
@@ -35,7 +36,7 @@ export class HttpService {
   //working as it should
   //this is updating admin's information
   {
-    return this.httpClient.put("http://localhost:3000/api/user/update/admin",account)
+    return this.httpClient.put("http://localhost:3000/api/user/update/admin",account, {responseType: 'text'})
   }
 
   public deleteAccount(account: IDelete){

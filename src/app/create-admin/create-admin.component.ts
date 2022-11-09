@@ -62,7 +62,8 @@ export class CreateAdminComponent implements OnInit, OnDestroy{
       password: this.password,
       PermissionLevel: null,
       userID: "",
-      permission: EPermission.CUSTOMER
+      permission: EPermission.CUSTOMER,
+      id: ""
     }
     this.shopKeeper.onCreateCustomer(account)
   }

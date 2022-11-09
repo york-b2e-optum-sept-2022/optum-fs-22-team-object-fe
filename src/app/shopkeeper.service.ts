@@ -4,6 +4,8 @@ import {EPermission} from "./enum/EPermission";
 import {IAccount} from "./interfaces/IAccount";
 import {BehaviorSubject, first, Subject} from "rxjs";
 import {IDelete} from "./interfaces/IDelete";
+import {IAdmin} from "./interfaces/IAdmin";
+import {IUpdateLocal} from "./interfaces/IUpdateLocal";
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +28,8 @@ export class ShopkeeperService {
   $permission = new BehaviorSubject<string>("");
   $array = new Subject<IAccount[]>();
   $main_Admin_Create = new BehaviorSubject<boolean>(false);
+
+
 
 
   public onCreateCustomer(account:IAccount) {
@@ -59,7 +63,8 @@ export class ShopkeeperService {
       password: password,
       userID: "",
       PermissionLevel: null,
-      permission: ""
+      permission: "",
+      id: ""
     }
     this.httpService.loginAccount(account).subscribe({
       next: value => {
@@ -113,6 +118,21 @@ export class ShopkeeperService {
        return value;
      }, error: err => {console.log(err)}
    })
+  }
+  public updateAdminAccount(account: IAdmin) {
+    this.httpService.updateAdminAccount(account).subscribe({
+      next: value => {console.log(value);
+        this.getAllAccounts(account.userID);
+        },error: err => {console.log(err)}
+    })
+  }
+  public updateLocalAccount(account: IUpdateLocal) {
+    this.httpService.updateLocalAccount(account).subscribe({
+      next: value => {
+        console.log("LOCAL: " + value)
+        this.getAllAccounts(account.currentID);
+      },error: err => {console.log(err)}
+    });
   }
 
 
