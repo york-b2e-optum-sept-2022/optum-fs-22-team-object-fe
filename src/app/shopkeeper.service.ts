@@ -3,6 +3,7 @@ import {HttpService} from "./http.service";
 import {IProduct} from "./interfaces/IProduct";
 import {BehaviorSubject, first, Subject} from "rxjs";
 import {ICategory} from "./interfaces/ICategory";
+import {ICoupon} from "./interfaces/ICoupon";
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,11 @@ export class ShopkeeperService {
       }
     )
   }
+  public getAllProducts(userID: string) {
+    this.httpService.getAllProducts(userID).pipe(first()).subscribe({
+      next: value => {
+        this.products.next(value);},error: err => {console.log(err)}});
+  }
 
   //Need to test
   public deleteProduct(product: IProduct) {
@@ -27,8 +33,13 @@ export class ShopkeeperService {
       next: value => {console.log(value)},error: err => {console.log(err)}
     })
   }
-  public deleteCoupon() {
-
+  public addCoupon(coupon: ICoupon) {
+    this.httpService.addCoupon(coupon).subscribe({
+      next: value => {console.log(value)}, error: err => {console.log(err)}
+    })
+  }
+  public deleteCoupon(coupon: ICoupon) {
+    this.httpService.deleteCoupon(coupon);
   }
   public editProduct(product: IProduct) {
     this.httpService.editProduct(product).pipe(first()).subscribe({
@@ -47,10 +58,6 @@ export class ShopkeeperService {
     )
   }
 
-  public getAllProducts(userID: string) {
-    this.httpService.getAllProducts(userID).pipe(first()).subscribe({
-      next: value => {
-        this.products.next(value);},error: err => {console.log(err)}});
-  }
+
 
 }

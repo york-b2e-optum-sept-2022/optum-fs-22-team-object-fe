@@ -7,17 +7,16 @@
 <br>
 <div *ngIf="viewSwitch === true && !isCreate">
   <!-- Inventory -->
-  <div *ngFor="">
-
+  <h1 style="margin: 2rem">Products</h1>
+  <div *ngFor="let index of products_Array; let i = index;" style="border:1px solid black; width: 20rem; text-align: center; margin: 2rem">
+    <hr>
+   <p>Product name: {{index.productName}}</p>
+    <p>Product price: ${{index.defaultPrice}}</p>
+    <p>Product Descr: {{index.description}}</p>
+    <button (click)="onEditProduct(i)">Edit</button>
+    <button (click)="onDeleteProduct(i)">Delete</button>
+    <hr>
   </div>
-
-
-
-
-
-
-
-
 
 </div>
 <br>
