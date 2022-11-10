@@ -3,6 +3,7 @@ import {EPermission} from "../enum/EPermission";
 import {ShopkeeperService} from "../shopkeeper.service";
 import {Subscription} from "rxjs";
 import {IAccount} from "../interfaces/IAccount";
+import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-create-admin',
@@ -26,7 +27,6 @@ export class CreateAdminComponent implements OnInit, OnDestroy{
   }
 
   permission_login: boolean = false;
-
   sub1: Subscription;
   email!: string;
   password!: string;

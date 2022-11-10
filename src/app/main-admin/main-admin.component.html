@@ -1,23 +1,21 @@
 <app-navigation></app-navigation>
-<div *ngIf="!switchCreate">
+<div class="body">
   <div>
-    <!-- Create-->
-    <button class="btn btn-primary" (click)="onCreate()" >CREATE</button>
+    <button class="btn btn-secondary" (click)="onLogOut()">Log Out</button>
   </div>
-
-</div>
-<br>
-<div>
-  <button class="btn btn-secondary" (click)="onLogOut()">Log Out</button>
-</div>
-<br>
-<div *ngIf="switchCreate">
-  <app-shopkeep-customer-admin-create></app-shopkeep-customer-admin-create>
+  <div *ngIf="!switchCreate">
+    <div>
+      <button class="btn btn-danger" (click)="onCreate()" >CREATE</button>
+    </div>
+  </div>
+  <br>
+  <div *ngIf="switchCreate">
+    <app-shopkeep-customer-admin-create></app-shopkeep-customer-admin-create>
   <div>
     <button class="btn btn-primary" (click)="onCancel()">Cancel</button>
   </div>
 
-</div>
+  </div>
 
 
 
@@ -41,4 +39,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

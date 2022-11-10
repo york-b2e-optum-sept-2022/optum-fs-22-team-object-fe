@@ -41,6 +41,7 @@ export class ShopkeepCustomerAdminCreateComponent implements OnInit {
        permission: ""
     }
 
+
    if (this.permission  === "Admin") {
      console.log("1");
 
