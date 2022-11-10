@@ -1,18 +1,41 @@
+
 <div>
   <button (click)="viewInventory()">View: Inventory</button>
   <button (click)="viewProduct()">View: Product Categories</button>
+  <button (click)="onLogOut()">Log Out</button>
 </div>
 <br>
-<div *ngIf="viewSwitch === true">
+<div *ngIf="viewSwitch === true && !isCreate">
+  <!-- Inventory -->
   <h1>HELLO WORLD2</h1>
 </div>
 <br>
-<div *ngIf="viewSwitch === false">
-  <h1>HELLO WORLD1</h1>
+<div *ngIf="viewSwitch === false && !isCreate">
+  <!-- Product -->
+<!--  - Get all the product lists-->
+<!--  - Edit-->
+<!--  - Delete-->
+<!--  - Create-->
+  <button (click)="isCreated()">Create</button>
+</div>
+<div *ngIf="isCreate">
+  <div>
+    <h1>Create Product</h1>
+    <p>Product name: <input type="text" [(ngModel)]="productName"></p>
+    <div>
+      <p>Images URL: <input type="text"   [(ngModel)]="images"></p>
+      <button (click)="onSubmit()">Submit</button>
+    </div>
+    <p>Description: <input type="text"   [(ngModel)]="description"></p>
+    <p>StartDate: <input  type="date"   [(ngModel)]="startDate"></p>
+    <p>DefaultPrice: <input type="number"   [(ngModel)]="defaultPrice"></p>
+    <p>DefaultMAP:  <input type="number"   [(ngModel)]="defaultMAP"></p>
+    <button (click)="onCreateProduct()">Create</button>
+  </div>
+  <br>
+
+
 </div>
 
-<br>
-<div>
-  <button (click)="onLogOut()">Log Out</button>
-</div>
+
 

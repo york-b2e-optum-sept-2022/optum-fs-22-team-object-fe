@@ -23,12 +23,6 @@ export class ShopkeepCustomerAdminCreateComponent implements OnInit {
       }
     });
 
-    // this.shopKeeper.$onEdit.subscribe({
-    //   next: value => {this.isEdited = value},error: err => {}
-    // })
-    // this.shopKeeper.$index.subscribe({
-    //   next: value => {this.index = value},error: err => {}
-    // })
   }
 
 
@@ -49,12 +43,10 @@ export class ShopkeepCustomerAdminCreateComponent implements OnInit {
 
    if (this.permission  === "Admin") {
      console.log("1");
-
      account.PermissionLevel = EPermission.ADMIN;
      account.permission = EPermission.ADMIN
      console.log(account.PermissionLevel);
      this.adminService.onCreateCustomer(account);
-
 
    }
     if (this.permission  === "Customer") {
