@@ -17,6 +17,9 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { MainAdminComponent } from './main-admin/main-admin.component';
 import { MainShopKeeperComponent } from './main-shop-keeper/main-shop-keeper.component';
 import { ShopkeepCustomerAdminCreateComponent } from './shopkeep-customer-admin-create/shopkeep-customer-admin-create.component';
+import { ProductCategoriesComponent } from './product-categories/product-categories.component';
+import { InventoryComponent } from './inventory/inventory.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +30,9 @@ import { ShopkeepCustomerAdminCreateComponent } from './shopkeep-customer-admin-
     MainComponent,
     MainAdminComponent,
     MainShopKeeperComponent,
-    ShopkeepCustomerAdminCreateComponent
+    ShopkeepCustomerAdminCreateComponent,
+    ProductCategoriesComponent,
+    InventoryComponent
   ],
   imports: [
     BrowserModule,

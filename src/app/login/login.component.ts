@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ShopkeeperService} from "../shopkeeper.service";
+import {AdminService} from "../admin.service";
 
 @Component({
   selector: 'app-login',
@@ -12,23 +13,20 @@ export class LoginComponent implements OnInit {
   loginError: string = "";
 
   onLogin() {
-    this.shopKeeper.loginAccount(this.email, this.password);
+    this.adminService.loginAccount(this.email, this.password);
   }
   onCreate() {
-    this.shopKeeper.$create_Error.next("");
-    this.shopKeeper.$isCreate.next(true);
+    this.adminService.$create_Error.next("");
+    this.adminService.$isCreate.next(true);
   }
-
-  constructor(private shopKeeper: ShopkeeperService) {
-    this.shopKeeper.$create_Error.subscribe({
+  constructor(private adminService: AdminService) {
+    this.adminService.$create_Error.subscribe({
       next: value => {
         this.loginError = value;
       },error: err => {
         console.log(err);
       }
     });
-
-
   }
 
   ngOnInit(): void {

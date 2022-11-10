@@ -6,4 +6,5 @@ export interface IAccount {
   PermissionLevel: EPermission | null;
   userID: string;
   permission: String;
+  id: string
 }

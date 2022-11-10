@@ -1,3 +1,25 @@
+<div *ngIf="!switchCreate && !isEdited">
+  <div>
+  <!-- Create-->
+  <button (click)="onCreate()">CREATE</button>
+    <button (click)="onLogOut()">Log Out</button>
+</div>
+
+  <div>
+    <!-- Show lists of accounts-->
+    <h1>Accounts</h1>
+    <div *ngFor="let element of accounts; let i = index;">
+      <div>
+        <hr>
+        <h4>Email: {{element.email}}</h4>
+        <h5>Permission: {{element.PermissionLevel}}</h5>
+
+        <hr>
+        <button (click)="onDelete(i)">Delete</button>
+        <button (click)="onEdit(i)">Edit</button>
+      </div>
+      <!-- Display array of accounts.-->
+    </div>
 <app-navigation></app-navigation>
 <div class="body">
   <div>
@@ -15,6 +37,17 @@
     <button class="btn btn-primary" (click)="onCancel()">Cancel</button>
   </div>
 
+  </div>
+
+  </div>
+
+
+  <div>
+    <!-- Edit-->
+  </div>
+
+  <div>
+    <!-- Delete-->
   </div>
 
 
@@ -40,4 +73,19 @@
     </div>
   </div>
 </div>
+<br>
+<div *ngIf="switchCreate">
+  <app-shopkeep-customer-admin-create></app-shopkeep-customer-admin-create>
+  <div>
+    <button (click)="onCancel()">Cancel</button>
+  </div>
+</div>
+
+<div *ngIf="isEdited">
+  <h1>UPDATE</h1>
+  <p>UPDATE EMAIL: <input [(ngModel)]="email"> </p>
+  <p>UPDATE PASSWORD: <input [(ngModel)]="password"></p>
+  <button (click)="onUpdate()">Update</button>
+
+
 </div>
