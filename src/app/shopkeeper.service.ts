@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from "./http.service";
 import {IProduct} from "./interfaces/IProduct";
-import {first} from "rxjs";
+import {BehaviorSubject, first, Subject} from "rxjs";
 import {ICategory} from "./interfaces/ICategory";
 
 @Injectable({
@@ -9,6 +9,9 @@ import {ICategory} from "./interfaces/ICategory";
 })
 export class ShopkeeperService {
   constructor(private httpService: HttpService) {}
+
+  products = new Subject<IProduct[]>();
+
 
   public createProduct(product: IProduct) {
     this.httpService.createProduct(product).pipe(first()).subscribe(
@@ -42,6 +45,12 @@ export class ShopkeeperService {
     this.httpService.deleteCategory(category).pipe(first()).subscribe({
       next: value => {console.log(value)},error: err => {console.log(err)}}
     )
+  }
+
+  public getAllProducts(userID: string) {
+    this.httpService.getAllProducts(userID).pipe(first()).subscribe({
+      next: value => {
+        this.products.next(value);},error: err => {console.log(err)}});
   }
 
 }

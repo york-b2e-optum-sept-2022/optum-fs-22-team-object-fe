@@ -99,4 +99,8 @@ export class HttpService {
     }
     return this.httpClient.delete("http://localhost:3000/api/product/delete/categories",category_Data);
   }
+
+  public getAllProducts(userID: string): Observable<IProduct[]>{
+    return this.httpClient.get(`http://localhost:3000/api/product/get/all?userID=${userID}`) as Observable<IProduct[]>;
+  }
 }
