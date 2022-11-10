@@ -62,4 +62,6 @@ export class MainAdminComponent implements OnInit, OnDestroy{
   onCancel() {
     this.shopKeeper.$main_Admin_Create.next(false);
   }
+
+
 }

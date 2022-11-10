@@ -1,10 +1,22 @@
-<h1>Log in</h1>
-Email: <input [(ngModel)]="email">
-Password: <input [(ngModel)]="password">
-<br>
-{{loginError}}
-<br>
-<button (click)="onLogin()">Login</button>
-<button (click)="onCreate()">Create</button>
+<div class="container justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="text-center">
+
+          <h1>Login</h1>
+          <h6>Enter Email and Password</h6>
+          <div class=" input mb-3 p-4 mx-auto col-sm-10">
+            Email: <input [(ngModel)]="email">
+          </div>
+          <div class="input mb-3 mx-auto col-sm-10">
+            Password: <input [(ngModel)]="password">
+          </div>
+            {{loginError}}
+          <button class="btn btn-primary m-lg-3" (click)="onLogin()">Login</button>
+          <button class="btn btn-primary" (click)="onCreate()">Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <app-navigation></app-navigation>
 <app-navigation></app-navigation>
