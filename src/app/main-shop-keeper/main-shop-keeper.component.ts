@@ -16,11 +16,21 @@ export class MainShopKeeperComponent implements OnInit {
     })
     this.shopKeeper.getAllProducts("2641310b-01f6-4791-8215-5bad20751633");
     this.shopKeeper.products.subscribe({
-      next: value => {this.products = value}
+      next: value => {
+        this.products = value
+        let count = 0;
+        for(let i = 0; i < this.products.length; i++) {
+          if (this.products[i].discontinued === false) {
+            this.products_Array[count] = this.products[i];
+            count++;
+          }
+        }
+      }
     })
 
   }
-  products!:IProduct[];
+  products:IProduct[] = []; //arrays
+  products_Array: IProduct[] = []; //display arrays
 
   ngOnInit(): void {}
 
@@ -68,8 +78,9 @@ export class MainShopKeeperComponent implements OnInit {
       defaultPrice: this.defaultPrice,
       defaultMAP: this.defaultMAP,
       productID: "",
-      // userID: this.userID
-      userID: "2641310b-01f6-4791-8215-5bad20751633"
+      userID: this.userID,
+      // userID: "2641310b-01f6-4791-8215-5bad20751633",
+      discontinued: null
     }
     this.shopKeeper.createProduct(product);
   }
@@ -82,13 +93,12 @@ export class MainShopKeeperComponent implements OnInit {
     }
     console.log("Please enter your url");
   }
+  onDeleteProduct(i: number) {
+    console.log(this.products_Array[i].productID)
+  }
 
 
-
-
-
-
-
-
-
+  onEditProduct(i: number) {
+    console.log(this.products_Array[i].discontinued)
+  }
 }

@@ -6,5 +6,6 @@ export interface IProduct {
   defaultPrice: number;
   defaultMAP: number;
   productID: string;
-  userID: string
+  userID: string;
+  discontinued: boolean | null
 }
