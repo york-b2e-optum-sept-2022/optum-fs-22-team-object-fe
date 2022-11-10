@@ -5,8 +5,10 @@
   <button (click)="onLogOut()">Log Out</button>
 </div>
 <br>
-<div *ngIf="viewSwitch === true && !isCreate">
+<div *ngIf="viewSwitch === true && isCreate === false">
   <!-- Inventory -->
+  <div *ngFor="let elements of products">
+
   <h1 style="margin: 2rem">Products</h1>
   <div *ngFor="let index of products_Array; let i = index;" style="border:1px solid black; width: 20rem; text-align: center; margin: 2rem">
     <hr>
@@ -17,10 +19,10 @@
     <button (click)="onDeleteProduct(i)">Delete</button>
     <hr>
   </div>
-
 </div>
 <br>
-<div *ngIf="viewSwitch === false && !isCreate">
+
+<div *ngIf="viewSwitch === false && isCreate === false">
   <!-- Product -->
 <!--  - Get all the product lists-->
 <!--  - Edit-->

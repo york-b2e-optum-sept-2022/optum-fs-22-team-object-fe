@@ -12,9 +12,12 @@ export class MainShopKeeperComponent implements OnInit {
 
   constructor(private adminService: AdminService, private shopKeeper: ShopkeeperService) {
     this.adminService.$currentID.subscribe({
-      next: value => {this.userID = value}
+      next: value => {
+        this.userID = value
+        console.log("ID: " + this.userID);
+      }
     })
-    this.shopKeeper.getAllProducts("2641310b-01f6-4791-8215-5bad20751633");
+    this.shopKeeper.getAllProducts(this.userID);
     this.shopKeeper.products.subscribe({
       next: value => {
         this.products = value
