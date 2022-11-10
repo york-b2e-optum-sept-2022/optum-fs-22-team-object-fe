@@ -14,7 +14,13 @@ export class MainShopKeeperComponent implements OnInit {
     this.adminService.$currentID.subscribe({
       next: value => {this.userID = value}
     })
+    this.shopKeeper.getAllProducts("2641310b-01f6-4791-8215-5bad20751633");
+    this.shopKeeper.products.subscribe({
+      next: value => {this.products = value}
+    })
+
   }
+  products!:IProduct[];
 
   ngOnInit(): void {}
 
@@ -62,7 +68,8 @@ export class MainShopKeeperComponent implements OnInit {
       defaultPrice: this.defaultPrice,
       defaultMAP: this.defaultMAP,
       productID: "",
-      userID: this.userID
+      // userID: this.userID
+      userID: "2641310b-01f6-4791-8215-5bad20751633"
     }
     this.shopKeeper.createProduct(product);
   }
