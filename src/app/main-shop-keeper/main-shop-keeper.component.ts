@@ -232,6 +232,7 @@ export class MainShopKeeperComponent implements OnInit {
       categoryName: this.categoryString
     }
     this.shopKeeper.addCategory(category);
+
     return;
   }
   if (this.switchDelete === true && this.switchAdd === false) {
@@ -242,6 +243,8 @@ export class MainShopKeeperComponent implements OnInit {
     }
     console.log(this.categoryString);
     this.shopKeeper.deleteCategory(category);
+
+
     return;
   }
 
