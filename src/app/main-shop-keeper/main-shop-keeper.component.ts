@@ -63,6 +63,7 @@ export class MainShopKeeperComponent implements OnInit {
     this.defaultMAP = -1;
     this.defaultPrice = -1;
     this.isCreate = true;
+    console.log("create");
   }
 
   /*
