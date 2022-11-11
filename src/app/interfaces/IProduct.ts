@@ -8,4 +8,5 @@ export interface IProduct {
   productID: string;
   userID: string;
   discontinued: boolean | null
+  categories: string[]
 }
