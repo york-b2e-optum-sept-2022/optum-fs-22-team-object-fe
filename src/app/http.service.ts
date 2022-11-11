@@ -8,6 +8,7 @@ import {IUpdateLocal} from "./interfaces/IUpdateLocal";
 import {IProduct} from "./interfaces/IProduct";
 import {ICategory} from "./interfaces/ICategory";
 import {ICoupon} from "./interfaces/ICoupon";
+import {IProductDelete} from "./interfaces/IProductDelete";
 
 
 @Injectable({
@@ -68,21 +69,25 @@ export class HttpService {
   }
 
   //Need to test
-  public deleteProduct(product: IProduct) {
+  public deleteProduct(product: IProductDelete) {
     const product_Data = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       }),
       body: {
         userID: product.userID,
-        email: product.productID
+        productID: product.productID
       }
     }
-    return this.httpClient.delete("http://localhost:3000/api/product/create",product_Data);
+    return this.httpClient.delete("http://localhost:3000/api/product/delete",product_Data);
   }
   public editProduct(product: IProduct) {
     return this.httpClient.put("http://localhost:3000/api/product/edit",product);
   }
+
+
+
+
   public addCategory(categoryLists: ICategory) {
     return this.httpClient.put("http://localhost:3000/api/product/edit/categories",categoryLists);
   }
@@ -117,5 +122,13 @@ export class HttpService {
     }
     return this.httpClient.delete("http://localhost:3000/api/product/delete/coupon", coupon_Data);
   }
+  public getOneProduct(userID: string, productID: string) {
+    return this.httpClient.get(`http://localhost:3000/api/product/get?userID=${userID}&productID=${productID}`);
+  }
+  public getAllCategoriesByName(categoryName: string) {
+    return this.httpClient.get(`http://localhost:3000/api/product/get/allCategories?categoryName=${categoryName}`);
+  }
+
+
 
 }

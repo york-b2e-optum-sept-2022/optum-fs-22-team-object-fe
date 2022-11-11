@@ -1,42 +1,120 @@
-
-<div>
+<!-----------------------------THESE ARE THE DISPLAY ON THE TOP ------------------->
+<div style="margin: 2rem; padding: 2rem">
   <button (click)="viewInventory()">View: Inventory</button>
   <button (click)="viewProduct()">View: Product Categories</button>
+  <button (click)="isCreated()">Create New Products</button>
   <button (click)="onLogOut()">Log Out</button>
-</div>
-<br>
-<div *ngIf="viewSwitch === true && !isCreate">
-  <!-- Inventory -->
-  <h1 style="margin: 2rem">Products</h1>
-  <div *ngFor="let index of products_Array; let i = index;" style="border:1px solid black; width: 20rem; text-align: center; margin: 2rem">
-    <hr>
-   <p>Product name: {{index.productName}}</p>
-    <p>Product price: ${{index.defaultPrice}}</p>
-    <p>Product Descr: {{index.description}}</p>
-    <button (click)="onEditProduct(i)">Edit</button>
-    <button (click)="onDeleteProduct(i)">Delete</button>
-    <hr>
-  </div>
+
 
 </div>
-<br>
-<div *ngIf="viewSwitch === false && !isCreate">
-  <!-- Product -->
-<!--  - Get all the product lists-->
-<!--  - Edit-->
-<!--  - Delete-->
-<!--  - Create-->
-  <button (click)="isCreated()">Create</button>
+
+<!--------------------------------------------------------------------------------------->
+
+<!----------------------------------------- Inventory ------------------------------------>
+<div *ngIf="viewSwitch && !isCreate && !isEdited" style="display: flex; justify-content: center">
+
+
+  <div >
+    <div  style="margin: 2rem">
+      <h1 >Products</h1>
+    </div>
+
+    <div style="display:flex; flex-wrap: wrap">
+      <div *ngFor="let index of products_Array; let i = index;" style="border:1px solid black; width: 20rem; text-align: center; margin: 2rem; ">
+        <hr>
+        <p>Product name: {{index.productName}}  </p>
+        <p>Product price: ${{index.defaultPrice}} </p>
+        <p>Product Descr: {{index.description}}</p>
+        <button (click)="onEditProduct(i)">Edit</button>
+        <button (click)="onDeleteProduct(i)">Delete</button>
+        <hr>
+      </div>
+    </div>
+  </div>
 </div>
-<div *ngIf="isCreate">
+<!--------------------------------------------------------------------------------------->
+
+<!---------------------------- Inventory EDIT --------------------------------------------->
+<div *ngIf="isEdited && viewSwitch && !isCreate" style="margin: 5rem; padding: 2rem; border: 2px solid black">
+  <h1>Current Product</h1>
+  <div style="border: 1px solid black; padding: 2rem">
+    <h5>Product Name: {{currentProduct.productName}}</h5>
+    <h5>Product Description: {{currentProduct.description}}</h5>
+    <h5>Product Default Price: ${{currentProduct.defaultPrice}}</h5>
+    <h5>Product Default MAP: ${{currentProduct.defaultMAP}}</h5>
+    <h5>Images: {{currentProduct.images}}</h5>
+  </div>
+  <h1>Edit Product</h1>
+  <p>Product name: <input type="text" [(ngModel)]="productName"></p>
   <div>
+    <p>Images URL: <input type="text"   [(ngModel)]="images"></p>
+    <button (click)="onSubmit()">Submit</button>
+  </div>
+  <br>
+  <div>
+    <p>Description: </p> <textarea [(ngModel)]="description" ></textarea>
+  </div>
+  <p>StartDate: <input  type="date"   [(ngModel)]="startDate"></p>
+  <p>DefaultPrice: <input type="number"   [(ngModel)]="defaultPrice"></p>
+  <p>DefaultMAP:  <input type="number"   [(ngModel)]="defaultMAP"></p>
+  <button (click)="onEdit()">Edit</button>
+  <button (click)="onCancel()">Cancel</button>
+</div>
+<!--------------------------------------------------------------------------------------->
+
+
+<!---------------------------- Categories --------------------------------------------->
+<div *ngIf="viewSwitch === false&& !isCreate" >
+  <div>
+    <div style="justify-content: center">
+      <h1 >Categories</h1>
+    </div>
+
+      <div style="padding: 2rem; display: flex; flex-wrap: wrap; justify-content: space-around;">
+        <div *ngFor="let element of products_Array; let i = index" style="border: 1px solid black; padding: 1rem; width: 15rem">
+          <h5>Product: {{element.productName}}</h5>
+          <br>
+          <h5>Category: {{element.categories}}</h5>
+          <button (click)="onAddCategory(i)">Add Category</button>
+          <button (click)="onDeleteCategory(i)">Delete Category</button>
+          <br>
+        </div>
+      </div>
+
+
+  <div style="display: flex; flex-wrap: wrap; justify-content: space-around">
+    <div style="flex-wrap: wrap; padding-right: 2rem; margin-top: 2rem">
+      <h4> {{displayCategory}} </h4>
+      <p>Category Input: <input [(ngModel)]="categoryString" ></p>
+      <button (click)="createCategory()">Add</button>
+      <button (click)="deleteCategory()">Delete</button>
+      <button (click)="onSubmitCategory()">Submit</button>
+    </div>
+    <div>
+      <h5>Add Lists of Category: </h5>
+      <p *ngFor="let element of listsDisplay_Name">{{element}}</p>
+    </div>
+    <div>
+      <h5>Delete Lists of Category: </h5>
+      <p *ngFor="let element of deleteListsDisplay_Name">{{element}}</p>
+    </div>
+</div>
+<!--------------------------------------------------------------------------------------->
+
+
+<!---------------------------- CREATE PRODUCTS -------------------------------------------->
+<div *ngIf="isCreate" style="margin: 5rem; padding: 2rem; border: 2px solid black">
+  <div >
     <h1>Create Product</h1>
     <p>Product name: <input type="text" [(ngModel)]="productName"></p>
     <div>
       <p>Images URL: <input type="text"   [(ngModel)]="images"></p>
       <button (click)="onSubmit()">Submit</button>
     </div>
-    <p>Description: <input type="text"   [(ngModel)]="description"></p>
+    <br>
+    <div>
+      <p>Description: </p> <textarea [(ngModel)]="description" ></textarea>
+    </div>
     <p>StartDate: <input  type="date"   [(ngModel)]="startDate"></p>
     <p>DefaultPrice: <input type="number"   [(ngModel)]="defaultPrice"></p>
     <p>DefaultMAP:  <input type="number"   [(ngModel)]="defaultMAP"></p>
@@ -46,6 +124,19 @@
 
 
 </div>
+<!--------------------------------------------------------------------------------------->
+<!---------------------------- CREATE Categories -------------------------------------------->
+<div *ngIf="!viewSwitch && !isCreate && isCreateCategory" style="padding: 1rem">
+  <h1>Create Categories</h1>
+  <div style="border: 1px solid black; width: 40rem; text-align: center">
+    <p>Product Name: {{displayProduct}}</p>
+    <p>CategoryName: <input type="text" [(ngModel)]="categoryString"></p>
+    <button (click)="createCategory()">Create</button>
+    <button (click)="onCancel2()"> Cancel</button>
+
+  </div>
 
 
+
+</div>
 
