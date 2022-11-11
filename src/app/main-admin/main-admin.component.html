@@ -1,3 +1,4 @@
+<app-navigation></app-navigation>
 <div *ngIf="!switchCreate && !isEdited">
   <div>
   <!-- Create-->
@@ -5,32 +6,23 @@
     <button (click)="onLogOut()">Log Out</button>
 </div>
 
-  <div>
-    <!-- Show lists of accounts-->
-    <h1>Accounts</h1>
-    <div *ngFor="let element of accounts; let i = index;">
-      <div>
-        <hr>
-        <h4>Email: {{element.email}}</h4>
-        <h5>Permission: {{element.PermissionLevel}}</h5>
+<!--  <div>-->
+<!--    &lt;!&ndash; Show lists of accounts&ndash;&gt;-->
+<!--    <h1>Accounts</h1>-->
+<!--    <div *ngFor="let element of accounts; let i = index;">-->
+<!--      <div>-->
+<!--        <hr>-->
+<!--        <h4>Email: {{element.email}}</h4>-->
+<!--        <h5>Permission: {{element.PermissionLevel}}</h5>-->
 
-        <hr>
-        <button (click)="onDelete(i)">Delete</button>
-        <button (click)="onEdit(i)">Edit</button>
-      </div>
-      <!-- Display array of accounts.-->
-    </div>
+<!--        <hr>-->
+<!--        <button (click)="onDelete(i)">Delete</button>-->
+<!--        <button (click)="onEdit(i)">Edit</button>-->
+<!--      </div>-->
+<!--      &lt;!&ndash; Display array of accounts.&ndash;&gt;-->
+<!--    </div>-->
 
-  </div>
-
-
-  <div>
-    <!-- Edit-->
-  </div>
-
-  <div>
-    <!-- Delete-->
-  </div>
+<!--  </div>-->
 
 </div>
 <br>
@@ -49,4 +41,31 @@
 
 
 </div>
+
+<!--Dano-->
+
+
+
+<!-- Dano -->
+<!-- Show lists of accounts-->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container">
+  <div class="row">
+    <div *ngFor="let element of accounts; let i = index;" class="col-md-6 col-xl-3">
+      <div class="card m-b-30">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Email : <a href="#">{{element.email}}</a></li>
+          <li class="list-group-item"><i class="fa fa-id-badge float-right"></i>Permission: {{element.PermissionLevel}}</li>
+        </ul>
+        <div class="card-body">
+          <div class="float-right btn-group btn-group-sm">
+            <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" (click)="onEdit(i)"><i class="fa fa-pencil"></i> </a>
+            <a class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete" (click)="onDelete(i)"><i class="fa fa-times"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 

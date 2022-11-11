@@ -1,8 +1,10 @@
 
-<div>
-  <button (click)="viewInventory()">View: Inventory</button>
-  <button (click)="viewProduct()">View: Product Categories</button>
-  <button (click)="onLogOut()">Log Out</button>
+<div class="top">
+  <button class="nav" (click)="viewInventory()">Inventory</button>
+  <p class="nav">/</p>
+  <button class="nav" (click)="viewProduct()">Product Categories</button>
+  <p class="nav">/</p>
+  <button class="nav" (click)="onLogOut()">Log Out</button>
 </div>
 <br>
 <div *ngIf="viewSwitch === true && !isCreate">
