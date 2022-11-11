@@ -3,6 +3,12 @@
 <!--Dano-->
 <!-----------------------------THESE ARE THE DISPLAY ON THE TOP ------------------->
 <!--Dano-->
+
+<div class="header">
+  <link href='https://fonts.googleapis.com/css?family=Bebas Neue' rel='stylesheet'>
+  <h1>DASHBOARD</h1>
+</div>
+<hr>
 <div class="top">
   <button class="nav" (click)="viewInventory()">Inventory</button>
   <p class="nav">/</p>
@@ -23,7 +29,7 @@
 
   <div style="justify-content: center">
     <div class="product-title mt-4">
-      <h1 >Products</h1>
+      <h1 style="letter-spacing: 5px;">Products</h1>
     </div>
 
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -121,17 +127,40 @@
       <h1 >Categories</h1>
     </div>
 
-      <div style="padding: 2rem; display: flex; flex-wrap: wrap; justify-content: space-around;">
-        <div *ngFor="let element of products_Array; let i = index" style="border: 1px solid black; padding: 1rem; width: 15rem">
-          <h5>Product: {{element.productName}}</h5>
-          <br>
-          <h5>Category: {{element.categories}}</h5>
-          <button (click)="onAddCategory(i)">Add Category</button>
-          <button (click)="onDeleteCategory(i)">Delete Category</button>
-          <br>
+<!--      <div style="padding: 2rem; display: flex; flex-wrap: wrap; justify-content: space-around;">-->
+<!--        <div *ngFor="let element of products_Array; let i = index" style="border: 1px solid black; padding: 1rem; width: 15rem">-->
+<!--          <h5>Product: {{element.productName}}</h5>-->
+<!--          <br>-->
+<!--          <h5>Category: {{element.categories}}</h5>-->
+<!--          <button (click)="onAddCategory(i)">Add Category</button>-->
+<!--          <button (click)="onDeleteCategory(i)">Delete Category</button>-->
+<!--          <br>-->
+<!--        </div>-->
+<!--      </div>-->
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <div class="container">
+      <div class="row mt-4" style="justify-content: center">
+        <div class="col-md-6 col-xl-3" *ngFor="let element of products_Array; let i = index">
+          <div class="card inventory m-b-30">
+            <div class="card-body row">
+              <div  class="card-title align-self-center mb-0">
+                <label>Product</label>
+                <h5>{{element.productName}}</h5>
+                <label>Category</label>
+                <h5>{{element.categories}}</h5>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="float-right btn-group btn-group-sm">
+                <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" (click)="onAddCategory(i)">Add </a>
+                <a href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete" (click)="onDeleteCategory(i)">Delete</a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-
+    </div>
 
   <div style="display: flex; flex-wrap: wrap; justify-content: space-around">
     <div style="flex-wrap: wrap; padding-right: 2rem; margin-top: 2rem">
@@ -151,6 +180,7 @@
     </div>
   </div>
   </div>
+
 </div>
 <!--------------------------------------------------------------------------------------->
 
