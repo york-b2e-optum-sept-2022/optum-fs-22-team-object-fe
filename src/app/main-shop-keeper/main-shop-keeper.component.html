@@ -1,10 +1,8 @@
+<!--Dano-->
+<app-navigation></app-navigation>
+<!--Dano-->
 <!-----------------------------THESE ARE THE DISPLAY ON THE TOP ------------------->
-<!--<div style="margin: 2rem; padding: 2rem">-->
-<!--  <button (click)="viewInventory()">View: Inventory</button>-->
-<!--  <button (click)="viewProduct()">View: Product Categories</button>-->
-<!--  <button (click)="isCreated()">Create New Products</button>-->
-<!--  <button (click)="onLogOut()">Log Out</button>-->
-
+<!--Dano-->
 <div class="top">
   <button class="nav" (click)="viewInventory()">Inventory</button>
   <p class="nav">/</p>
@@ -14,59 +12,105 @@
   <p class="nav">/</p>
   <button class="nav" (click)="onLogOut()">Log Out</button>
 </div>
+<!--Dano-->
 
 <!--------------------------------------------------------------------------------------->
 
 <!----------------------------------------- Inventory ------------------------------------>
-<div *ngIf="viewSwitch && !isCreate && !isEdited" style="display: flex; justify-content: center">
+<!--Dano-->
+<div *ngIf="viewSwitch && !isCreate && !isEdited" style="justify-content: center">
 
 
-  <div >
-    <div  style="margin: 2rem">
+  <div style="justify-content: center">
+    <div class="product-title mt-4">
       <h1 >Products</h1>
     </div>
 
-    <div style="display:flex; flex-wrap: wrap">
-      <div *ngFor="let index of products_Array; let i = index;" style="border:1px solid black; width: 20rem; text-align: center; margin: 2rem; ">
-        <hr>
-        <p>Product name: {{index.productName}}  </p>
-        <p>Product price: ${{index.defaultPrice}} </p>
-        <p>Product Descr: {{index.description}}</p>
-        <button (click)="onEditProduct(i)">Edit</button>
-        <button (click)="onDeleteProduct(i)">Delete</button>
-        <hr>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <div class="container">
+    <div class="row mt-4" style="justify-content: center">
+      <div class="col-md-6 col-xl-3" *ngFor="let index of products_Array; let i = index;">
+        <div class="card inventory m-b-30">
+          <div class="card-body row">
+            <div  class="card-title align-self-center mb-0">
+              <h5>{{index.productName}}</h5>
+            </div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Price: <a href="#">${{index.defaultPrice}}</a></li>
+            <li class="list-group-item">{{index.description}}</li>
+          </ul>
+          <div class="card-body">
+            <div class="float-right btn-group btn-group-sm">
+              <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" (click)="onEditProduct(i)"><i class="fa fa-pencil"></i> </a>
+              <a href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete" (click)="onDeleteProduct(i)"><i class="fa fa-times"></i></a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+</div>
+<!--Dano-->
+
 <!--------------------------------------------------------------------------------------->
 
 <!---------------------------- Inventory EDIT --------------------------------------------->
-<div *ngIf="isEdited && viewSwitch && !isCreate" style="margin: 5rem; padding: 2rem; border: 2px solid black">
-  <h1>Current Product</h1>
-  <div style="border: 1px solid black; padding: 2rem">
-    <h5>Product Name: {{currentProduct.productName}}</h5>
-    <h5>Product Description: {{currentProduct.description}}</h5>
-    <h5>Product Default Price: ${{currentProduct.defaultPrice}}</h5>
-    <h5>Product Default MAP: ${{currentProduct.defaultMAP}}</h5>
-    <h5>Images: {{currentProduct.images}}</h5>
-  </div>
-  <h1>Edit Product</h1>
-  <p>Product name: <input type="text" [(ngModel)]="productName"></p>
-  <div>
-    <p>Images URL: <input type="text"   [(ngModel)]="images"></p>
-    <button (click)="onSubmit()">Submit</button>
-  </div>
-  <br>
-  <div>
-    <p>Description: </p> <textarea [(ngModel)]="description" ></textarea>
-  </div>
-  <p>StartDate: <input  type="date"   [(ngModel)]="startDate"></p>
-  <p>DefaultPrice: <input type="number"   [(ngModel)]="defaultPrice"></p>
-  <p>DefaultMAP:  <input type="number"   [(ngModel)]="defaultMAP"></p>
-  <button (click)="onEdit()">Edit</button>
-  <button (click)="onCancel()">Cancel</button>
+
+<!--Dano-->
+
+<div *ngIf="isEdited && viewSwitch && !isCreate" class="card product border-primary">
+  <article class="card-body">
+    <h4 class="card-title mb-4 mt-1">Current Product</h4>
+    <div class="card w-75 mb-4 border-primary">
+      <div class="card-body">
+        <h5 class="card-text">Product Name: {{currentProduct.productName}}</h5>
+        <h5 class="card-text">Product Description: {{currentProduct.description}}</h5>
+        <h5 class="card-text">Product Default Price: ${{currentProduct.defaultPrice}}</h5>
+        <h5 class="card-text">Product Default MAP: ${{currentProduct.defaultMAP}}</h5>
+        <h5 class="card-text">Images: {{currentProduct.images}}</h5>
+      </div>
+    </div>
+    <h4 class="card-title mb-4 mt-1">Edit Product</h4>
+    <form>
+      <div class="form-group">
+        <label>Product Name</label>
+        <input name="product" class="form-control" placeholder="Product" type="text" [(ngModel)]="productName">
+      </div> <!-- form-group// -->
+      <div class="form-group">
+        <label>Image Url</label>
+        <input name="image" class="form-control" placeholder="Product image url" type="text" [(ngModel)]="images">
+      </div> <!-- form-group// -->
+      <div class="form-group">
+        <button type="submit" class="btn btn-outline-primary" (click)="onSubmit()">Edit</button>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea name="descript" class="form-control" placeholder="Short product description" id="floatingTextarea2" rows="2"
+                  [(ngModel)]="description"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Start Date</label>
+        <input name="date" class="form-control" placeholder="Date" type="date" [(ngModel)]="startDate">
+      </div>
+      <div class="form-group">
+        <label>Default Price</label>
+        <input name="price" class="form-control" placeholder="Price" type="number"  [(ngModel)]="defaultPrice">
+      </div>
+      <div class="form-group">
+        <label>Default MAP</label>
+        <input name="map" class="form-control" placeholder="Price" type="number" [(ngModel)]="defaultMAP">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" (click)="onEdit()">Submit Edit</button>
+        <button type="submit" class="btn btn-primary" (click)="onCancel()">Cancel</button>
+      </div> <!-- form-group// -->
+    </form>
+  </article>
 </div>
+
+<!--Dano-->
 <!--------------------------------------------------------------------------------------->
 
 
@@ -112,27 +156,47 @@
 
 
 <!---------------------------- CREATE PRODUCTS -------------------------------------------->
-<div *ngIf="isCreate" style="margin: 5rem; padding: 2rem; border: 2px solid black">
-  <div >
-    <h1>Create Product</h1>
-    <p>Product name: <input type="text" [(ngModel)]="productName"></p>
-    <div>
-      <p>Images URL: <input type="text"   [(ngModel)]="images"></p>
-      <button (click)="onSubmit()">Submit</button>
-    </div>
-    <br>
-    <div>
-      <p>Description: </p> <textarea [(ngModel)]="description" ></textarea>
-    </div>
-    <p>StartDate: <input  type="date"   [(ngModel)]="startDate"></p>
-    <p>DefaultPrice: <input type="number"   [(ngModel)]="defaultPrice"></p>
-    <p>DefaultMAP:  <input type="number"   [(ngModel)]="defaultMAP"></p>
-    <button (click)="onCreateProduct()">Create</button>
-  </div>
-  <br>
+<!--Dano-->
+<div *ngIf="isCreate" class="card product border-primary">
+  <article class="card-body">
+    <h4 class="card-title mb-4 mt-1">Create Product</h4>
+    <form>
+      <div class="form-group">
+        <label>Product Name</label>
+        <input name="product" class="form-control" placeholder="Product" type="text" [(ngModel)]="productName">
+      </div> <!-- form-group// -->
+      <div class="form-group">
+        <label>Image Url</label>
+        <input name="image" class="form-control" placeholder="Product image url" type="text" [(ngModel)]="images">
+      </div> <!-- form-group// -->
+      <div class="form-group">
+        <button type="submit" class="btn btn-outline-primary" (click)="onSubmit()">Submit</button>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea name="descript" class="form-control" placeholder="Short product description" id="floatingTextarea" rows="2"
+                  [(ngModel)]="description"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Start Date</label>
+        <input name="date" class="form-control" placeholder="Date" type="date" [(ngModel)]="startDate">
+      </div>
+      <div class="form-group">
+        <label>Default Price</label>
+        <input name="price" class="form-control" placeholder="Price" type="number"  [(ngModel)]="defaultPrice">
+      </div>
+      <div class="form-group">
+        <label>Default MAP</label>
+        <input name="map" class="form-control" placeholder="Price" type="number" [(ngModel)]="defaultMAP">
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary" (click)="onCreateProduct()">Submit Product</button>
+      </div> <!-- form-group// -->
+    </form>
+  </article>
+</div> <!-- card.// -->
 
-
-</div>
+<!--Dano-->
 <!--------------------------------------------------------------------------------------->
 <!---------------------------- CREATE Categories -------------------------------------------->
 <div *ngIf="!viewSwitch && !isCreate && isCreateCategory" style="padding: 1rem">
@@ -142,9 +206,6 @@
     <p>CategoryName: <input type="text" [(ngModel)]="categoryString"></p>
     <button (click)="createCategory()">Create</button>
     <button (click)="onCancel2()"> Cancel</button>
-  </div>
-
-  </div>
   </div>
 
 </div>

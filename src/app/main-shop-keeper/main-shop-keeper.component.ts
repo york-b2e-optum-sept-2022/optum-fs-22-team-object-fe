@@ -16,7 +16,7 @@ export class MainShopKeeperComponent implements OnInit {
     this.adminService.$currentID.subscribe({
       next: value => {this.userID = value}
     })
-    this.shopKeeper.getAllProducts("2641310b-01f6-4791-8215-5bad20751633"); // Change this.
+    this.shopKeeper.getAllProducts("78b7872d-26e7-4480-8832-400504b3d4fb"); // Change this.
     this.shopKeeper.products.subscribe({
       next: value => {
         this.products_Array = []; // to reset current arrays.
@@ -102,7 +102,7 @@ export class MainShopKeeperComponent implements OnInit {
       defaultMAP: this.defaultMAP,
       productID: "",
       // userID: this.userID,
-      userID: "2641310b-01f6-4791-8215-5bad20751633",
+      userID: "78b7872d-26e7-4480-8832-400504b3d4fb",
       discontinued: null,
       categories: []
     }
@@ -122,7 +122,7 @@ export class MainShopKeeperComponent implements OnInit {
   onDeleteProduct(i: number) {
     console.log(this.products_Array[i].productID)
     const productDelete: IProductDelete = {
-      userID: "2641310b-01f6-4791-8215-5bad20751633",
+      userID: "78b7872d-26e7-4480-8832-400504b3d4fb",
       productID: this.products_Array[i].productID
     }
     this.shopKeeper.deleteProduct(productDelete);
@@ -147,7 +147,7 @@ export class MainShopKeeperComponent implements OnInit {
       defaultMAP: this.defaultMAP,
       productID: this.currentProduct.productID,
       // userID: this.userID,
-      userID: "2641310b-01f6-4791-8215-5bad20751633",
+      userID: "78b7872d-26e7-4480-8832-400504b3d4fb",
       discontinued: null,
       categories: []
     }
@@ -228,7 +228,7 @@ export class MainShopKeeperComponent implements OnInit {
   onSubmitCategory() {
   if (this.switchAdd === true) {
     const category: ICategory = {
-      userID: "2641310b-01f6-4791-8215-5bad20751633",
+      userID: "78b7872d-26e7-4480-8832-400504b3d4fb",
       productIDs: this.listsOfProductIDs,
       categoryName: this.categoryString
     }
@@ -238,7 +238,7 @@ export class MainShopKeeperComponent implements OnInit {
   }
   if (this.switchDelete === true && this.switchAdd === false) {
     const category: ICategory = {
-      userID: "2641310b-01f6-4791-8215-5bad20751633",
+      userID: "78b7872d-26e7-4480-8832-400504b3d4fb",
       productIDs: this.deleteListsOfProductIDs,
       categoryName: this.categoryString
     }
