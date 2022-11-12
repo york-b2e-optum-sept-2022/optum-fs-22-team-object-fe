@@ -42,6 +42,7 @@ export class MainShopKeeperComponent implements OnInit {
   onLogOut() {
     this.adminService.$permission.next("");
     this.adminService.$isLogged.next(false);
+    console.log("logout")
   }
   viewSwitch!: boolean;
   isCreate: boolean = false;

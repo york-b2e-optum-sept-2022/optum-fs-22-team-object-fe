@@ -3,7 +3,7 @@ import {ShopkeeperService} from "../shopkeeper.service";
 import {AdminService} from "../admin.service";
 
 @Component({
-  selector: 'app-main',
+  selector: 'app-main-customer',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
 })
