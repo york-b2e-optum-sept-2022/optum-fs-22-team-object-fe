@@ -9,6 +9,8 @@ import {IProduct} from "./interfaces/IProduct";
 import {ICategory} from "./interfaces/ICategory";
 import {ICoupon} from "./interfaces/ICoupon";
 import {IProductDelete} from "./interfaces/IProductDelete";
+import {ICouponReturn} from "./interfaces/ICouponReturn";
+import {ICouponDelete} from "./interfaces/ICouponDelete";
 
 
 @Injectable({
@@ -110,14 +112,15 @@ export class HttpService {
   public addCoupon(coupon: ICoupon) {
     return this.httpClient.post("http://localhost:3000/api/product/create/coupon",coupon, {responseType:'text'});
   }
-  public deleteCoupon(coupon: ICoupon) {
+  public deleteCoupon(coupon: ICouponDelete) {
     const coupon_Data = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       }),
       body: {
         userID: coupon.userID,
-        code: coupon.code
+        code: coupon.code,
+        productIDs: coupon.productIDs
       }
     }
     return this.httpClient.delete("http://localhost:3000/api/product/delete/coupon", coupon_Data);
@@ -130,5 +133,7 @@ export class HttpService {
   }
 
 
-
+  public getCoupon(userID: string, productID: string): Observable<ICouponReturn[] > {
+    return this.httpClient.get(`http://localhost:3000/api/product/get/coupons?userID=${userID}&productID=${productID}`) as Observable<ICouponReturn[] >;
+  }
 }

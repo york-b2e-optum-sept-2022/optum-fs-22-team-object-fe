@@ -4,6 +4,9 @@ import {AdminService} from "../admin.service";
 import {IProduct} from "../interfaces/IProduct";
 import {IProductDelete} from "../interfaces/IProductDelete";
 import {ICategory} from "../interfaces/ICategory";
+import {ICoupon} from "../interfaces/ICoupon";
+import {ICouponReturn} from "../interfaces/ICouponReturn";
+import {ICouponDelete} from "../interfaces/ICouponDelete";
 
 @Component({
   selector: 'app-main-shop-keeper',
@@ -34,8 +37,40 @@ export class MainShopKeeperComponent implements OnInit {
     })
 
   }
-  products:IProduct[] = []; //arrays
-  products_Array: IProduct[] = []; //display arrays
+
+  isCoupons: boolean = false;
+  coupons_Array: ICouponReturn [] = [];
+  current_ViewUser: string = "";
+  viewCoupons(i: number) {
+    this.isCoupons = true;
+    this.couponArray_IDs = [];
+    this.couponArray_Names = [];
+
+    this.current_ViewUser = this.products_Array[i].productID;
+    console.log(this.products_Array[i].productID);
+    this.shopKeeper.getCoupon("2641310b-01f6-4791-8215-5bad20751633", this.products_Array[i].productID).subscribe({
+      next: value => {
+        this.coupons_Array = value;
+        console.log(value)},error: err => {console.log(err)}
+    })
+  }
+  onDeleteCoupons(i: number) {
+    const temp_Coupon: ICouponDelete = {
+      code: this.coupons_Array[i].code,
+      userID: "2641310b-01f6-4791-8215-5bad20751633",
+      productIDs: [this.current_ViewUser]
+    };
+    this.shopKeeper.deleteCoupon(temp_Coupon);
+    this.coupons_Array = [];
+    this.shopKeeper.getCoupon("2641310b-01f6-4791-8215-5bad20751633",this.current_ViewUser).subscribe({
+      next: value => {this.coupons_Array = value},error: err => {console.log(err)} //look over this.
+    })
+  }
+
+
+
+    products:IProduct[] = []; //arrays
+    products_Array: IProduct[] = []; //display arrays
 
   ngOnInit(): void {}
 
@@ -52,11 +87,13 @@ export class MainShopKeeperComponent implements OnInit {
     this.viewSwitch = true;
     this.isCreate = false;
     this.isEdited = false;
+    this.isCoupons = false;
   }
   viewProduct() {
     this.viewSwitch = false;
     this.isCreate = false;
     this.isEdited = false;
+    this.isCoupons = false;
   }
   isCreated() {
     this.productName = "";
@@ -65,6 +102,7 @@ export class MainShopKeeperComponent implements OnInit {
     this.defaultPrice = -1;
     this.isCreate = true;
     console.log("create");
+    this.isCoupons = false;
   }
 
   /*
@@ -105,7 +143,8 @@ export class MainShopKeeperComponent implements OnInit {
       // userID: this.userID,
       userID: "78b7872d-26e7-4480-8832-400504b3d4fb",
       discontinued: null,
-      categories: []
+      categories: [],
+      coupons: []
     }
     this.shopKeeper.createProduct(product);
   }
@@ -150,7 +189,8 @@ export class MainShopKeeperComponent implements OnInit {
       // userID: this.userID,
       userID: "78b7872d-26e7-4480-8832-400504b3d4fb",
       discontinued: null,
-      categories: []
+      categories: [],
+      coupons: []
     }
     this.shopKeeper.editProduct(product);
     this.emptyLocalVariables();
@@ -245,14 +285,60 @@ export class MainShopKeeperComponent implements OnInit {
     }
     console.log(this.categoryString);
     this.shopKeeper.deleteCategory(category);
-
-
     return;
+    }
+  }
+  onCouponBoolean: boolean = false;
+
+  couponArray_IDs: string[] = [];
+  couponArray_Names: string[] = [];
+
+  code: string = "";
+  startDate_Coupon: number = -1;
+  endDate_Coupon: number = -1;
+  sale!:number;
+
+  onCoupon(i : number){
+    this.isCoupons = false;
+    this.onCouponBoolean = true;
+    if (this.couponArray_IDs.length === 0) {
+      this.couponArray_IDs.push(this.products_Array[i].productID);
+      this.couponArray_Names.push(this.products_Array[i].productName);
+      console.log(this.couponArray_Names);
+      return;
+    }
+    let count = 0;
+    while(count < this.couponArray_IDs.length) {
+      if (this.couponArray_IDs[count] === this.products_Array[i].productID) {
+        console.log("SAME ID FROM COUPON");
+        return;
+      }
+      count++;
+    }
+    this.couponArray_IDs.push(this.products_Array[i].productID);
+    this.couponArray_Names.push(this.products_Array[i].productName);
+    console.log(this.couponArray_Names);
+  }
+  addCoupon() {
+    const startingDate = new Date(this.startDate_Coupon).getTime();
+    const endingDate = new Date(this.endDate_Coupon).getTime()+1;
+    //Date overlab.
+    const coupon: ICoupon = {
+      code: this.code,
+      productIDs: this.couponArray_IDs,
+      // startDate: 11262022,
+      // endDate: 11302022,
+      startDate: startingDate,
+      endDate: endingDate,
+      sale: this.sale,
+      userID: "2641310b-01f6-4791-8215-5bad20751633"
+    }
+    this.shopKeeper.addCoupon(coupon);
+    this.couponArray_IDs = [];
+    this.couponArray_Names = [];
+    this.onCouponBoolean = false;
   }
 
 
-
-
-  }
 
 }

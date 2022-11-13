@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from "./http.service";
 import {IProduct} from "./interfaces/IProduct";
-import {BehaviorSubject, first, Subject} from "rxjs";
+import {BehaviorSubject, first, Observable, Subject} from "rxjs";
 import {ICategory} from "./interfaces/ICategory";
 import {ICoupon} from "./interfaces/ICoupon";
 import {IProductDelete} from "./interfaces/IProductDelete";
-import {AdminService} from "./admin.service";
+import {ICouponReturn} from "./interfaces/ICouponReturn";
+import {ICouponDelete} from "./interfaces/ICouponDelete";
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ import {AdminService} from "./admin.service";
 export class ShopkeeperService {
   constructor(private httpService: HttpService) {}
   products = new Subject<IProduct[]>();
+  $couponLists = new Subject<ICouponReturn>();
 
 
   public createProduct(product: IProduct) {
@@ -47,7 +49,7 @@ export class ShopkeeperService {
       next: value => {console.log(value)}, error: err => {console.log(err)}
     })
   }
-  public deleteCoupon(coupon: ICoupon) {
+  public deleteCoupon(coupon: ICouponDelete) {
     this.httpService.deleteCoupon(coupon).pipe(first()).subscribe({
       next: value => {console.log(value)},error: err => {console.log(err)}
     })
@@ -75,6 +77,15 @@ export class ShopkeeperService {
         //console.log(value);
         },error: err => {console.log(err)}});
   }
+
+  public getCoupon(userID: string, productID: string): Observable<ICouponReturn[]>  {
+    // let coupons: string[] = [];
+    return this.httpService.getCoupon(userID,productID);
+  }
+
+
+
+
   //Need to test
   public getAllCategoriesByName(categoryName: string) {
     this.httpService.getAllCategoriesByName(categoryName).pipe(first()).subscribe({
