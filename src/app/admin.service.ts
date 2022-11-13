@@ -1,10 +1,10 @@
 import {Injectable, OnDestroy} from '@angular/core';
 import {HttpService} from "./http.service";
 import {BehaviorSubject, first, Subject, Subscription} from "rxjs";
-import {IAccount} from "./interfaces/IAccount";
-import {IDelete} from "./interfaces/IDelete";
-import {IAdmin} from "./interfaces/IAdmin";
-import {IUpdateLocal} from "./interfaces/IUpdateLocal";
+import {IAccount} from "./interfaces/Accounts/IAccount";
+import {IDelete} from "./interfaces/Accounts/IDelete";
+import {IAdmin} from "./interfaces/Accounts/IAdmin";
+import {IUpdateLocal} from "./interfaces/Accounts/IUpdateLocal";
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +26,8 @@ export class AdminService {
   $permission = new BehaviorSubject<string>("");
   $array = new Subject<IAccount[]>();
   $main_Admin_Create = new BehaviorSubject<boolean>(false);
+  $current_Email = new BehaviorSubject<string>("");
+  localCurrentID: string = "";
 
 
 
@@ -37,7 +39,7 @@ export class AdminService {
       next: value => {
         this.$isCreate.next(false);
         this.$create_Error.next("");
-        this.getAllAccounts(account.userID);
+        this.getAllAccounts(this.localCurrentID);
       }, error: err => {
         if (err.status === 409) {
           this.$create_Error.next(this.HTTPSTATUS_CONFLICT);
@@ -64,9 +66,11 @@ export class AdminService {
       permission: "",
       id: ""
     }
+    this.$current_Email.next(email);
     this.httpService.loginAccount(account).pipe(first()).subscribe({
       next: value => {
         this.$currentID.next(value); //getting the current ID when they log in.
+        this.localCurrentID = value;
         this.$isLogged.next(true)
         this.httpService.getMyPermissionLevel(value).pipe(first()).subscribe({ // getting user's permission.
           next: value1 => {
@@ -94,7 +98,7 @@ export class AdminService {
     this.httpService.deleteAccount(account).pipe(first()).subscribe({
       next: value => {
         console.log(value);
-        this.getAllAccounts(account.userID);
+        this.getAllAccounts(this.localCurrentID);
       },error: err => {
         if (err.status === 403) {
           this.$create_Error.next(this.DELETE_ERROR);

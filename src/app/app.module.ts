@@ -19,6 +19,7 @@ import { MainShopKeeperComponent } from './main-shop-keeper/main-shop-keeper.com
 import { ShopkeepCustomerAdminCreateComponent } from './shopkeep-customer-admin-create/shopkeep-customer-admin-create.component';
 import { ProductCategoriesComponent } from './product-categories/product-categories.component';
 import { InventoryComponent } from './inventory/inventory.component';
+import { CartComponent } from './cart/cart.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { InventoryComponent } from './inventory/inventory.component';
     MainShopKeeperComponent,
     ShopkeepCustomerAdminCreateComponent,
     ProductCategoriesComponent,
-    InventoryComponent
+    InventoryComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

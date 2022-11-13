@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {IAccount} from "../interfaces/IAccount";
-import {IDelete} from "../interfaces/IDelete";
-import {IAdmin} from "../interfaces/IAdmin";
-import {IUpdateLocal} from "../interfaces/IUpdateLocal";
+import {IAccount} from "../interfaces/Accounts/IAccount";
+import {IDelete} from "../interfaces/Accounts/IDelete";
+import {IAdmin} from "../interfaces/Accounts/IAdmin";
+import {IUpdateLocal} from "../interfaces/Accounts/IUpdateLocal";
 import {AdminService} from "../admin.service";
 import {Subscription} from "rxjs";
 
