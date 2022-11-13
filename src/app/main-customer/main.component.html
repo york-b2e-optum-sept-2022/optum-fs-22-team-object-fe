@@ -8,6 +8,8 @@
       <button (click)="onCart()">Cart</button>
     </div>
   </div>
+
+
   <app-cart *ngIf="isCart && !isAccount"></app-cart>
 
   <div *ngIf="isAccount && !isCart">
