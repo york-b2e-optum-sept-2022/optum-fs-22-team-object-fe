@@ -67,6 +67,8 @@ export class MainShopKeeperComponent implements OnInit {
     })
   }
 
+
+
     products:IProduct[] = []; //arrays
     products_Array: IProduct[] = []; //display arrays
 
