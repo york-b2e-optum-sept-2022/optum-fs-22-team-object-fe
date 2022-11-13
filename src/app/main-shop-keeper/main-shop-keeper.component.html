@@ -66,7 +66,7 @@
 
 <!--Dano-->
 
-<div *ngIf="isEdited && viewSwitch && !isCreate" class="card product border-primary">
+<div *ngIf="isEdited && viewSwitch && !isCreate" class="card product border-primary" style="width: 700px;">
   <article class="card-body">
     <h4 class="card-title mb-4 mt-1">Current Product</h4>
     <div class="card w-75 mb-4 border-primary">
@@ -123,20 +123,9 @@
 <!---------------------------- Categories --------------------------------------------->
 <div *ngIf="viewSwitch === false&& !isCreate" >
   <div>
-    <div style="justify-content: center">
-      <h1 >Categories</h1>
+    <div class="product-title mt-4">
+      <h1 style="letter-spacing: 5px;" >Categories</h1>
     </div>
-
-<!--      <div style="padding: 2rem; display: flex; flex-wrap: wrap; justify-content: space-around;">-->
-<!--        <div *ngFor="let element of products_Array; let i = index" style="border: 1px solid black; padding: 1rem; width: 15rem">-->
-<!--          <h5>Product: {{element.productName}}</h5>-->
-<!--          <br>-->
-<!--          <h5>Category: {{element.categories}}</h5>-->
-<!--          <button (click)="onAddCategory(i)">Add Category</button>-->
-<!--          <button (click)="onDeleteCategory(i)">Delete Category</button>-->
-<!--          <br>-->
-<!--        </div>-->
-<!--      </div>-->
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
     <div class="container">
@@ -162,25 +151,44 @@
       </div>
     </div>
 
-  <div style="display: flex; flex-wrap: wrap; justify-content: space-around">
-    <div style="flex-wrap: wrap; padding-right: 2rem; margin-top: 2rem">
-      <h4> {{displayCategory}} </h4>
-      <p>Category Input: <input [(ngModel)]="categoryString" ></p>
-      <button (click)="createCategory()">Add</button>
-      <button (click)="deleteCategory()">Delete</button>
-      <button (click)="onSubmitCategory()">Submit</button>
-    </div>
-    <div>
-      <h5>Add Lists of Category: </h5>
-      <p *ngFor="let element of listsDisplay_Name">{{element}}</p>
-    </div>
-    <div>
-      <h5>Delete Lists of Category: </h5>
-      <p *ngFor="let element of deleteListsDisplay_Name">{{element}}</p>
-    </div>
-  </div>
-  </div>
+    <hr>
+    <div class="card product border-primary" style="width: 1000px; height:500px;">
+      <div class="card-body">
+        <div class="card-header bg-transparent border-primary" style="text-align: center">
+          <h4 class="card-title">Category Controls</h4>
+        </div>
 
+        <div style="display: flex;">
+          <div class="card-form">
+            <h4> {{displayCategory}} </h4>
+            <label class="text-primary">Category Input</label>
+            <input class="form-control" type="text" [(ngModel)]="categoryString">
+            <div class="mt-2 btn-group btn-group-sm">
+              <a href="#" class="btn btn-outline-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" (click)="createCategory()">Add </a>
+              <a href="#" class="btn btn-outline-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete" (click)="deleteCategory()">Delete</a>
+              <a href="#" class="btn btn-outline-success tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Submit" (click)="onSubmitCategory()">Submit</a>
+            </div>
+          </div>
+        </div>
+        <hr>
+
+        <div class="container list ">
+          <div class="row justify-content-md-center">
+            <div class="col">
+              <h5>Add Lists of Category: </h5>
+              <p *ngFor="let element of listsDisplay_Name">{{element}}</p>
+            </div>
+            <div class="col">
+              <h5>Delete Lists of Category: </h5>
+              <p *ngFor="let element of deleteListsDisplay_Name">{{element}}</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+</div>
 </div>
 <!--------------------------------------------------------------------------------------->
 

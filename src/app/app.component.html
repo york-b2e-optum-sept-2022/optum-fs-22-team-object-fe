@@ -1,12 +1,10 @@
-<!--<app-create-admin *ngIf="isCreated === true"> </app-create-admin>-->
-<!--<app-login *ngIf="isCreated === false && isLogged === false"> </app-login>-->
-<!--<div *ngIf="isLogged">-->
-<!--  <app-main *ngIf="isCustomer === true"></app-main>-->
-<!--  <app-main-admin *ngIf="isAdmin === true"></app-main-admin>-->
-<!--  <app-main-shop-keeper *ngIf="isShopKeeper === true"></app-main-shop-keeper>-->
-<!--</div>-->
-
-
-<!-- <app-main-shop-keeper></app-main-shop-keeper> -->
-
-<router-outlet></router-outlet>
+<app-create-admin *ngIf="isCreated === true"> </app-create-admin>
+<app-login *ngIf="isCreated === false && isLogged === false"> </app-login>
+<div *ngIf="isLogged">
+  <app-main-customer *ngIf="isCustomer === true"></app-main-customer>
+  <app-main-admin *ngIf="isAdmin === true"></app-main-admin>
+  <app-main-shop-keeper *ngIf="isShopKeeper === true"></app-main-shop-keeper>
+</div>
+<!-- <router-outlet></router-outlet>
+ <app-main-shop-keeper></app-main-shop-keeper>
+-->

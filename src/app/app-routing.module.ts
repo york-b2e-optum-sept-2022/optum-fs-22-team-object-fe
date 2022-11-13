@@ -6,11 +6,13 @@ import {MainComponent} from "./main-customer/main.component";
 import {CustomerAccountComponent} from "./customer-account/customer-account.component";
 import {CustomerCartComponent} from "./customer-cart/customer-cart.component";
 import {LoginComponent} from "./login/login.component";
+import {MainShopKeeperComponent} from "./main-shop-keeper/main-shop-keeper.component";
 
 
 const routes: Routes = [
   {path: 'administrator', component: CreateAdminComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'shopkeeper', component: MainShopKeeperComponent},
   {path: 'cust', component: MainComponent},
   {path: 'cust-account', component: CustomerAccountComponent},
   {path: 'cart', component: CustomerCartComponent}
