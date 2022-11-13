@@ -51,6 +51,10 @@
               <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" (click)="onEditProduct(i)"><i class="fa fa-pencil"></i> </a>
               <a href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete" (click)="onDeleteProduct(i)"><i class="fa fa-times"></i></a>
             </div>
+            <div class="float-left btn-group btn-group-sm">
+              <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Add" (click)="onCoupon(i)">Add Coupon</a>
+              <a href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" (click)="viewCoupons(i)">Edit Coupon</a>
+            </div>
           </div>
         </div>
       </div>
@@ -66,7 +70,7 @@
 
 <!--Dano-->
 
-<div *ngIf="isEdited && viewSwitch && !isCreate" class="card product border-primary" style="width: 700px;">
+<div *ngIf="isEdited && viewSwitch && !isCreate && !onCouponBoolean" class="card product border-primary" style="width: 700px;">
   <article class="card-body">
     <h4 class="card-title mb-4 mt-1">Current Product</h4>
     <div class="card w-75 mb-4 border-primary">
