@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ShopkeeperService} from "../shopkeeper.service";
 import {AdminService} from "../admin.service";
 import {IDelete} from "../interfaces/Accounts/IDelete";
+import {IProduct} from "../interfaces/Products/IProduct";
+
 
 @Component({
   selector: 'app-main',
@@ -10,7 +12,7 @@ import {IDelete} from "../interfaces/Accounts/IDelete";
 })
 export class MainComponent implements OnInit {
 
-  constructor(private adminService: AdminService) {
+  constructor(private adminService: AdminService, private shopKeeper: ShopkeeperService) {
     this.adminService.$currentID.subscribe({
       next: value => {
         console.log(value)
@@ -23,13 +25,23 @@ export class MainComponent implements OnInit {
         this.email = value;
       },error: err => {}
     })
+    this.shopKeeper.getAllProducts(this.userID);
+    this.shopKeeper.products.subscribe({
+      next: value => {
+        this.products = value;
+        console.log(value)},error: err=> {console.log(err)}
+
+    })
   }
 
   ngOnInit(): void {}
+  products: IProduct[] = [];
   email: string = "";
   userID: string = "";
   isCart: boolean = false;
   isAccount: boolean = false;
+
+
 
 
   onLogOut() {
