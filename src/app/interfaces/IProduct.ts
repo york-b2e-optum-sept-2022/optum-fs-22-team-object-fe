@@ -9,4 +9,5 @@ export interface IProduct {
   userID: string;
   discontinued: boolean | null
   categories: string[]
+  coupons: string[]
 }

@@ -4,16 +4,13 @@
   <button (click)="viewProduct()">View: Product Categories</button>
   <button (click)="isCreated()">Create New Products</button>
   <button (click)="onLogOut()">Log Out</button>
-
-
 </div>
 
 <!--------------------------------------------------------------------------------------->
 
+
 <!----------------------------------------- Inventory ------------------------------------>
 <div *ngIf="viewSwitch && !isCreate && !isEdited" style="display: flex; justify-content: center">
-
-
   <div >
     <div  style="margin: 2rem">
       <h1 >Products</h1>
@@ -27,6 +24,8 @@
         <p>Product Descr: {{index.description}}</p>
         <button (click)="onEditProduct(i)">Edit</button>
         <button (click)="onDeleteProduct(i)">Delete</button>
+        <button (click)="onCoupon(i)">Add Coupon</button>
+        <button (click)="viewCoupons(i)">View Coupon</button>
         <hr>
       </div>
     </div>
@@ -35,7 +34,7 @@
 <!--------------------------------------------------------------------------------------->
 
 <!---------------------------- Inventory EDIT --------------------------------------------->
-<div *ngIf="isEdited && viewSwitch && !isCreate" style="margin: 5rem; padding: 2rem; border: 2px solid black">
+<div *ngIf="isEdited && viewSwitch && !isCreate && !onCouponBoolean" style="margin: 5rem; padding: 2rem; border: 2px solid black">
   <h1>Current Product</h1>
   <div style="border: 1px solid black; padding: 2rem">
     <h5>Product Name: {{currentProduct.productName}}</h5>
@@ -136,8 +135,39 @@
     <button (click)="createCategory()">Create</button>
     <button (click)="onCancel2()"> Cancel</button>
   </div>
-
-
-
 </div>
 
+<div *ngIf="onCouponBoolean && viewSwitch && !isCreate && !isEdited && !isCoupons" style=" display: flex; justify-content: space-around; flex-wrap: wrap" >
+  <div>
+    <h1>Coupon</h1>
+    <div style="border: 1px solid black; padding-left: 2rem;">
+      <h5>Code: <input [(ngModel)]="code"> </h5>
+      <h5>Start Date: <input type="date" [(ngModel)]="startDate_Coupon"> </h5>
+      <h5>End Date:  <input type="date" [(ngModel)]="endDate_Coupon"> </h5>
+      <h5>Sale Percentage: <input type="number" [(ngModel)]="sale"> </h5>
+      <button (click)="addCoupon()">Add Coupon</button>
+    </div>
+  </div>
+  <div>
+    <h1>Products Lists To Add Coupons </h1>
+    <div *ngFor="let data of couponArray_Names">
+      <h5> - {{data}}</h5>
+    </div>
+  </div>
+</div>
+<!--------------------------------------------------------------------------------------->
+
+<div *ngIf="isCoupons && viewSwitch && !isCreate && !isEdited">
+  <h2 style="display: flex; justify-content: center">CODE </h2>
+  <hr>
+  <div *ngFor="let element of coupons_Array; let i = index" style="display: flex; justify-content: space-around; border: 1px solid black; width: 50rem; margin: 5rem">
+    <div>
+      <h3>Code:  {{element.code}}</h3>
+      <h3>Percentage:  {{element.sale}}</h3>
+    </div>
+    <div style="padding: 2rem">
+      <button (click)="onDeleteCoupons(i)">Delete</button>
+    </div>
+
+  </div>
+</div>
