@@ -3,6 +3,8 @@ import {ShopkeeperService} from "../shopkeeper.service";
 import {AdminService} from "../admin.service";
 import {IDelete} from "../interfaces/Accounts/IDelete";
 import {IProduct} from "../interfaces/Products/IProduct";
+import {IProductCount} from "../interfaces/Products/IProductCount";
+import {toNumbers} from "@angular/compiler-cli/src/version_helpers";
 
 
 @Component({
@@ -41,28 +43,46 @@ export class MainComponent implements OnInit {
   isCart: boolean = false;
   isAccount: boolean = false;
   cartProducts: IProduct[] = [];
-  cartItemCount: number[] = [];
+  cartItemCount: IProductCount[] = [];
 
 
 
-
+ //[0] => product: 1
+  //
   addCart(i: number) {
-
     if (this.cartProducts.length === 0) {
       this.cartProducts.push(this.products[i]);
-      for (let i = 0; i < this.cartProducts.length; i++) {
-        if (this.cartProducts[i].productID === this.products[i].productID) {
-          this.cartProducts[i].productCount = 1;
-        }
+      const output: IProductCount = {
+        productID: this.products[i].productID,
+        number: 1,
+        userID: this.userID
       }
+      console.log("HELLO1")
+      this.cartItemCount.push(output)
+      // this.cartItemCount[0].productID = this.products[i].productID;
+      // this.cartItemCount[0].number = 1;
+      console.log(this.cartItemCount);
       return;
     }
-    this.cartProducts.push(this.products[i]);
-    for (let i = 0; i < this.cartProducts.length; i++) {
-      if (this.cartProducts[i].productID === this.products[i].productID) {
-        this.cartProducts[i].productCount+= 1;
+    // this.cartProducts.push(this.products[i]);
+    for (let a = 0; a < this.cartItemCount.length; a++) {
+
+      if (this.products[i].productID === this.cartItemCount[a].productID) {
+        this.cartItemCount[a].number += 1;
+        console.log("HELLO2")
+        console.log(this.cartItemCount);
+        return;
       }
     }
+    this.cartProducts.push(this.products[i]);
+    const output: IProductCount = {
+      productID: this.products[i].productID,
+      number: 1,
+      userID: this.userID
+    }
+    this.cartItemCount.push(output);
+    console.log("HELLO3")
+    console.log(this.cartItemCount);
   }
 
 
