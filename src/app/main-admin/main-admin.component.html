@@ -2,34 +2,16 @@
 <div *ngIf="!switchCreate && !isEdited">
   <div>
   <!-- Create-->
-  <button (click)="onCreate()">CREATE</button>
-    <button (click)="onLogOut()">Log Out</button>
+  <button class="btn btn-primary" (click)="onCreate()">Create</button>
+    <button class="btn btn-secondary" (click)="onLogOut()">Log Out</button>
 </div>
-
-<!--  <div>-->
-<!--    &lt;!&ndash; Show lists of accounts&ndash;&gt;-->
-<!--    <h1>Accounts</h1>-->
-<!--    <div *ngFor="let element of accounts; let i = index;">-->
-<!--      <div>-->
-<!--        <hr>-->
-<!--        <h4>Email: {{element.email}}</h4>-->
-<!--        <h5>Permission: {{element.PermissionLevel}}</h5>-->
-
-<!--        <hr>-->
-<!--        <button (click)="onDelete(i)">Delete</button>-->
-<!--        <button (click)="onEdit(i)">Edit</button>-->
-<!--      </div>-->
-<!--      &lt;!&ndash; Display array of accounts.&ndash;&gt;-->
-<!--    </div>-->
-
-<!--  </div>-->
 
 </div>
 <br>
 <div *ngIf="switchCreate">
   <app-shopkeep-customer-admin-create></app-shopkeep-customer-admin-create>
   <div>
-    <button (click)="onCancel()">Cancel</button>
+    <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
   </div>
 </div>
 

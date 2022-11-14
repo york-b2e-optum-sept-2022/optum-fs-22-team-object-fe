@@ -3,62 +3,42 @@
 <h1>Create</h1>
 email <input [(ngModel)]="email">
 password <input [(ngModel)]="password">
-<!--<div *ngIf="permission_login">-->
-<!--  <select name="permissions" id="permissions" [(ngModel)]="permission">-->
-<!--    <option value="Customer"selected>Customer</option>-->
-<!--    <option value="Admin">Admin</option>-->
-<!--    <option value="ShopKeeper">ShopKeeper</option>-->
-<!--  </select>-->
-<!--  {{errorNotSelecting}}-->
-<!--  <button (click)="onCreate()">Create</button>-->
-<!--  <button (click)="onCancel()">Cancel</button>-->
-<!--</div>-->
 <div>
   {{ERROR_FROM_HTTP_REQUEST}}
   <button (click)="onCreate()">Create</button>
   <button (click)="onCancel()">Cancel</button>
 </div>
 
-
-
-
-<!--&lt;!&ndash; HEAD &ndash;&gt;-->
-<!--<app-navigation></app-navigation>-->
-<!--<main role="main" class="container">-->
-
-<!--  <button type="button" class="btn btn-primary mx-2" (click)="openPopup()">Create Admin</button>-->
-<!--  <button type="button" class="btn btn-primary mx-2" (click)="openPopup()">Create Shopkeeper</button>-->
-
-<!--  &lt;!&ndash;  &ndash;&gt;-->
-<!--  <div class="modal" tabindex="-1" role="dialog"-->
-<!--       [ngStyle]="{'display':displayStyle}">-->
-<!--    <div class="modal-dialog" role="document">-->
-<!--      <div class="modal-content">-->
-<!--        <div class="modal-header">-->
-<!--          <h4 class="modal-title">New Admin</h4>-->
-<!--        </div>-->
-<!--        <div class="modal-body">-->
-<!--          &lt;!&ndash; defines and group the set of controls used in this component &ndash;&gt;-->
-<!--          <form>-->
-<!--            <div class="mb-3">-->
-<!--              &lt;!&ndash; uses formControl to bind values&ndash;&gt;-->
-<!--              <label class="form-label">Email</label>-->
-<!--              <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">-->
-<!--            </div>-->
-<!--            <div class="mb-3">-->
-<!--              <label for="exampleInputPassword1" class="form-label">Password</label>-->
-<!--              <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1"  placeholder="Password">-->
-<!--            </div>-->
-<!--          </form>-->
-<!--        </div>-->
-<!--        <div class="modal-footer">-->
-<!--          <button type="button" id="close" class="btn btn-secondary" (click)="closePopup()">Close</button>-->
-<!--          &lt;!&ndash; binds to the formControl event to update and create new values &ndash;&gt;-->
-<!--          <button  type="button" class="btn btn-primary" >Create</button>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-
-
-<!--</main>&lt;!&ndash; /.container &ndash;&gt;-->
+  <button type="button" class="btn btn-primary mx-2" (click)="openPopup()">Create Admin</button>
+  <!--  -->
+  <div class="modal" tabindex="-1" role="dialog"
+       [ngStyle]="{'display':displayStyle}">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">New Admin</h4>
+        </div>
+        <div class="modal-body">
+          <!-- defines and group the set of controls used in this component -->
+          <form>
+            <div class="mb-3">
+              <!-- uses formControl to bind values-->
+              <label class="form-label">Email</label>
+              <input formControlName="email" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email" [(ngModel)]="email">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input formControlName="password" type="password" class="form-control" id="exampleInputPassword1"  placeholder="Password"  [(ngModel)]="password">
+            </div>
+            {{ERROR_FROM_HTTP_REQUEST}}
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="close" class="btn btn-secondary" (click)="closePopup()">Close</button>
+          <!-- binds to the formControl event to update and create new values -->
+          <button  type="button" class="btn btn-primary" (click)="onCreate()">Create</button>
+          <button  type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
