@@ -11,6 +11,7 @@ import {ICoupon} from "./interfaces/Coupons/ICoupon";
 import {IProductDelete} from "./interfaces/Products/IProductDelete";
 import {ICouponReturn} from "./interfaces/Coupons/ICouponReturn";
 import {ICouponDelete} from "./interfaces/Coupons/ICouponDelete";
+import {IProductCount} from "./interfaces/Products/IProductCount";
 
 
 @Injectable({
@@ -135,5 +136,9 @@ export class HttpService {
 
   public getCoupon(userID: string, productID: string): Observable<ICouponReturn[] > {
     return this.httpClient.get(`http://localhost:3000/api/product/get/coupons?userID=${userID}&productID=${productID}`) as Observable<ICouponReturn[] >;
+  }
+
+  public putCart(cart: IProductCount) {
+    return this.httpClient.put("http://localhost:3000/api/user/cart",cart, {responseType:'text'});
   }
 }

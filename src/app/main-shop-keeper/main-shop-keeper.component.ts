@@ -143,7 +143,8 @@ export class MainShopKeeperComponent implements OnInit {
       userID: "78b7872d-26e7-4480-8832-400504b3d4fb",
       discontinued: null,
       categories: [],
-      coupons: []
+      coupons: [],
+      q: 0
     }
     this.shopKeeper.createProduct(product);
   }
@@ -189,7 +190,8 @@ export class MainShopKeeperComponent implements OnInit {
       userID: "78b7872d-26e7-4480-8832-400504b3d4fb",
       discontinued: null,
       categories: [],
-      coupons: []
+      coupons: [],
+      q: -1
     }
     this.shopKeeper.editProduct(product);
     this.emptyLocalVariables();
