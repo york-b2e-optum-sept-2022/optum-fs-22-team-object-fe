@@ -50,13 +50,19 @@ export class MainComponent implements OnInit {
 
     if (this.cartProducts.length === 0) {
       this.cartProducts.push(this.products[i]);
+      for (let i = 0; i < this.cartProducts.length; i++) {
+        if (this.cartProducts[i].productID === this.products[i].productID) {
+          this.cartProducts[i].productCount = 1;
+        }
+      }
       return;
     }
-    let count = 0;
-    // while(count < this.cartProducts.length) {
-    //
-    // }
     this.cartProducts.push(this.products[i]);
+    for (let i = 0; i < this.cartProducts.length; i++) {
+      if (this.cartProducts[i].productID === this.products[i].productID) {
+        this.cartProducts[i].productCount+= 1;
+      }
+    }
   }
 
 

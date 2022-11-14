@@ -7,7 +7,8 @@ export interface IProduct {
   defaultMAP: number;
   productID: string;
   userID: string;
-  discontinued: boolean | null
-  categories: string[]
-  coupons: string[]
+  discontinued: boolean | null;
+  categories: string[];
+  coupons: string[];
+  productCount: number
 }
