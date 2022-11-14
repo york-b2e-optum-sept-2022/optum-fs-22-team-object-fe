@@ -4,8 +4,8 @@ import {AdminService} from "../admin.service";
 import {IDelete} from "../interfaces/Accounts/IDelete";
 import {IProduct} from "../interfaces/Products/IProduct";
 import {IProductCount} from "../interfaces/Products/IProductCount";
-import {toNumbers} from "@angular/compiler-cli/src/version_helpers";
 import {CustomerService} from "../customer.service";
+import {BehaviorSubject, Subject} from "rxjs";
 
 
 @Component({
@@ -35,6 +35,12 @@ export class MainComponent implements OnInit {
         console.log(value)},error: err=> {console.log(err)}
 
     })
+    this.customerService.$cart.subscribe({
+      next: value => {this.isCart = value}, error: err => {}
+    })
+    this.customerService.$checkOut.subscribe({
+      next: value => {},error: err => {}
+    })
   }
 
   ngOnInit(): void {}
@@ -46,6 +52,7 @@ export class MainComponent implements OnInit {
   cartProducts: IProduct[] = [];
   cartItemCount: IProductCount[] = [];
   totalPrice: number = 0;
+
 
 
 
@@ -93,11 +100,9 @@ export class MainComponent implements OnInit {
     this.totalPrice += this.products[i].defaultPrice;
     this.customerService.putCart(this.cartItemCount[this.cartItemCount.length - 1]);
     console.log(this.cartProducts);
-
+    this.customerService.$checkOut.next(this.cartProducts);
+    this.customerService.$checkOutCount.next(this.cartItemCount);
   }
-
-
-
 
   onLogOut() {
     this.adminService.$permission.next("");
@@ -105,7 +110,17 @@ export class MainComponent implements OnInit {
   }
   onCart() {
     this.isAccount = false;
+    this.customerService.$cart.next(true);
     this.isCart = true;
+    this.customerService.$checkOut.next(this.cartProducts);
+    this.customerService.$checkOutCount.next(this.cartItemCount);
+    const empty: IProduct[] = [];
+    this.cartProducts = empty;
+    const empty2: IProductCount[] = [];
+    this.cartItemCount = empty2;
+    this.totalPrice = 0;
+
+
   }
   onAccount() {
     this.isCart = false;
@@ -122,6 +137,7 @@ export class MainComponent implements OnInit {
   }
 
 
+
   onDeleteCart(i: number) {
     for(let g = 0; g < this.cartItemCount.length; g++) {
       if (this.cartItemCount[g].productID === this.products[i].productID && this.cartItemCount[g].number != 0) {
@@ -131,8 +147,18 @@ export class MainComponent implements OnInit {
         return;
       }
       if (this.cartItemCount[g].productID === this.products[i].productID &&  this.cartItemCount[g].number === 0) {
-        delete this.cartProducts[g];
+        const temp = this.cartProducts.filter(word => word.productID != this.products[i].productID);
+        console.log(temp);
+        this.cartProducts.length = temp.length;
+        for (let gg = 0; gg < temp.length; gg++) {
+          this.cartProducts[gg] = temp[gg];
+        }
+        console.log(this.cartProducts.length);
+
       }
     }
   }
+
+
+
 }

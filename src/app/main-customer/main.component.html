@@ -5,15 +5,12 @@
     </div>
     <div >
       <button (click)="onAccount()">Account</button>
-      <button (click)="onCart()">Cart</button>
     </div>
   </div>
-
 
   <app-cart *ngIf="isCart && !isAccount"></app-cart>
 
   <!--- CUSTOMER ACCOUNT VIEW -->
-
 
   <div *ngIf="isAccount && !isCart">
     <h1>Account</h1>
@@ -27,11 +24,9 @@
     </div>
   </div>
 
-
-
 <!--- -->
 
-  <div style="display: flex; justify-content: space-between; margin: 2rem">
+  <div style="display: flex; justify-content: space-between; margin: 2rem" *ngIf="!isCart">
     <div>
       <h1>Product: </h1>
       <div *ngFor="let element of products; let i = index" style="border: 1px solid black; width: 25rem">
@@ -60,7 +55,7 @@
       <div>
         <br>
         <h5>Total: ${{totalPrice}}</h5>
-
+        <button (click)="onCart()">Check Out</button>
       </div>
     </div>
   </div>

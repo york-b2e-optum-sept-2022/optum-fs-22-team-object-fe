@@ -1,12 +1,13 @@
 <div>
-  <div>
-    <h2>Shopping Cart</h2>
+  <h1>Check Out</h1>
+  <div *ngFor="let element of checkOutLists;" style="border: 1px solid black; width: 25rem">
+    <h4>{{element.productName}}</h4>
+    <h4>${{element.defaultPrice}}</h4>
+    <h4>{{element.description}}</h4>
+    <h4>Q: {{element.q}}</h4>
   </div>
   <div>
-
-
-
-
-
+    <h1>Total: {{totalPrice}}</h1>
+    <button (click)="onCheckOut()">Check Out</button>
   </div>
 </div>
