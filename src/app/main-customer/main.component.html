@@ -12,26 +12,49 @@
 
   <app-cart *ngIf="isCart && !isAccount"></app-cart>
 
+  <!--- CUSTOMER ACCOUNT VIEW -->
+
+
   <div *ngIf="isAccount && !isCart">
     <h1>Account</h1>
     <div>
       <h4>Email: {{email}}</h4>
+      <button >Edit Account</button>
       <button (click)="onDeleteAccount()">Delete Account</button>
+    </div>
+    <div>
+
     </div>
   </div>
 
-  <div *ngFor="let element of products; let i = index" style="border: 1px solid black; width: 25rem">
-    <div>
-      <h4>
-        {{element.productName}}
-      </h4>
-      <h5>
-        ${{element.defaultPrice}}
-      </h5>
-      <h5>{{element.description}}</h5>
-    </div>
-    <button>Add to Cart</button>
 
+
+<!--- -->
+
+  <div style="display: flex; justify-content: space-between; margin: 2rem">
+    <div>
+      <h1>Product: </h1>
+      <div *ngFor="let element of products; let i = index" style="border: 1px solid black; width: 25rem">
+        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-model-unselect-gallery-2-202207_GEO_US?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1654893618197" style="width: 24rem; height: 25rem">
+        <h4>
+          {{element.productName}}
+        </h4>
+        <h4>
+          ${{element.defaultPrice}}
+        </h4>
+        <h4>{{element.description}}</h4>
+<!--        //<h4>{{element.images}}</h4>-->
+        <button (click)="addCart(i)">Add to Cart</button>
+      </div>
+    </div>
+    <div>
+      <h1>Cart</h1>
+      <hr>
+      <div *ngFor="let element of cartProducts; let i = index" style="border: 1px solid black; text-align: center">
+        <h5>{{element.productName}}</h5>
+        <h5>${{element.defaultPrice}}</h5>
+      </div>
+    </div>
   </div>
 
 

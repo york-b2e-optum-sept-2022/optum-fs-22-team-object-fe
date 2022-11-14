@@ -40,6 +40,24 @@ export class MainComponent implements OnInit {
   userID: string = "";
   isCart: boolean = false;
   isAccount: boolean = false;
+  cartProducts: IProduct[] = [];
+  cartItemCount: number[] = [];
+
+
+
+
+  addCart(i: number) {
+
+    if (this.cartProducts.length === 0) {
+      this.cartProducts.push(this.products[i]);
+      return;
+    }
+    let count = 0;
+    // while(count < this.cartProducts.length) {
+    //
+    // }
+    this.cartProducts.push(this.products[i]);
+  }
 
 
 
