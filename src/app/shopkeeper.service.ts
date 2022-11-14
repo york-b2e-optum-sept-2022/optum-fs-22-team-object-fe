@@ -71,6 +71,10 @@ export class ShopkeeperService {
       next: value => {console.log(value)},error: err => {console.log(err)}});
   }
 
+  $checkOut = new Subject<IProduct>();
+
+
+
 
   public getAllProducts(userID: string) {
     this.httpService.getAllProducts(userID).pipe(first()).subscribe({
@@ -78,10 +82,6 @@ export class ShopkeeperService {
         this.products.next(value);
         },error: err => {console.log(err)}});
   }
-
-
-
-
 
   public getCoupon(userID: string, productID: string): Observable<ICouponReturn[]>  {
     // let coupons: string[] = [];

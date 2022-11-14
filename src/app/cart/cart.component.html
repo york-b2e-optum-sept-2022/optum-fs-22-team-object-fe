@@ -1,13 +1,14 @@
-<div class="header">
-  <h1>Cart</h1>
-</div>
-<hr>
-
-<div class="card border-primary mb-3 mt-5" style="width: 600px; height: 600px; margin:0 auto;">
-  <div class="card-header text-center">Your Cart</div>
-  <div class="card-body text-primary">
-    <h5 class="card-title">Primary card title</h5>
-
+<div>
+  <h1>Check Out</h1>
+  <div *ngFor="let element of checkOutLists;" style="border: 1px solid black; width: 25rem">
+    <h4>{{element.productName}}</h4>
+    <h4>${{element.defaultPrice}}</h4>
+    <h4>{{element.description}}</h4>
+    <h4>Q: {{element.q}}</h4>
+  </div>
+  <div>
+    <h1>Total: {{totalPrice}}</h1>
+    <button (click)="onCheckOut()">Check Out</button>
   </div>
 </div>
 
