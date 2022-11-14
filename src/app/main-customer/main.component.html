@@ -47,13 +47,15 @@
         <button (click)="addCart(i)">Add to Cart</button>
       </div>
     </div>
-    <div>
-      <h1>Cart</h1>
-      <hr>
-      <div *ngFor="let element of cartProducts; let i = index" style="border: 1px solid black; text-align: center">
-        <h5>{{element.productName}}</h5>
-        <h5>${{element.defaultPrice}}</h5>
-      </div>
+    <div >
+        <div style="padding-right: 4rem">
+          <h1>Cart</h1>
+          <hr>
+          <div *ngFor="let element of cartProducts; let i = index" style="border: 1px solid black; text-align: center">
+            <h5>{{element.productName}}</h5>
+            <h5>${{element.defaultPrice}}</h5>
+          </div>
+        </div >
     </div>
   </div>
 

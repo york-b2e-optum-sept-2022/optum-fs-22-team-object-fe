@@ -5,6 +5,7 @@ import {IDelete} from "../interfaces/Accounts/IDelete";
 import {IProduct} from "../interfaces/Products/IProduct";
 import {IProductCount} from "../interfaces/Products/IProductCount";
 import {toNumbers} from "@angular/compiler-cli/src/version_helpers";
+import {CustomerService} from "../customer.service";
 
 
 @Component({
@@ -14,7 +15,7 @@ import {toNumbers} from "@angular/compiler-cli/src/version_helpers";
 })
 export class MainComponent implements OnInit {
 
-  constructor(private adminService: AdminService, private shopKeeper: ShopkeeperService) {
+  constructor(private adminService: AdminService, private shopKeeper: ShopkeeperService, private customerService: CustomerService) {
     this.adminService.$currentID.subscribe({
       next: value => {
         console.log(value)
@@ -47,8 +48,7 @@ export class MainComponent implements OnInit {
 
 
 
- //[0] => product: 1
-  //
+
   addCart(i: number) {
     if (this.cartProducts.length === 0) {
       this.cartProducts.push(this.products[i]);
@@ -59,18 +59,17 @@ export class MainComponent implements OnInit {
       }
       console.log("HELLO1")
       this.cartItemCount.push(output)
-      // this.cartItemCount[0].productID = this.products[i].productID;
-      // this.cartItemCount[0].number = 1;
+      this.customerService.putCart(output);
       console.log(this.cartItemCount);
       return;
     }
-    // this.cartProducts.push(this.products[i]);
-    for (let a = 0; a < this.cartItemCount.length; a++) {
 
+    for (let a = 0; a < this.cartItemCount.length; a++) {
       if (this.products[i].productID === this.cartItemCount[a].productID) {
         this.cartItemCount[a].number += 1;
         console.log("HELLO2")
         console.log(this.cartItemCount);
+        this.customerService.putCart(this.cartItemCount[a]);
         return;
       }
     }
@@ -82,7 +81,10 @@ export class MainComponent implements OnInit {
     }
     this.cartItemCount.push(output);
     console.log("HELLO3")
-    console.log(this.cartItemCount);
+    console.log(this.cartItemCount.length);
+    // console.log(this.cartItemCount[this.cartItemCount.length -1]);
+    this.customerService.putCart(this.cartItemCount[this.cartItemCount.length - 1]);
+
   }
 
 
