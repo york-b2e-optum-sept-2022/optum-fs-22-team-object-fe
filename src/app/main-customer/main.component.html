@@ -1,78 +1,130 @@
-<app-store-nav></app-store-nav>
 <div>
-  <div *ngIf="!isCart">
-
-    <div class="header">
-      <h1>Store</h1>
+  <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" (click)="onAccount()" >Account</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="onLogOut()">Logout</a>
+        </li>
+        <li class="nav-item">
+        </li>
+      </ul>
     </div>
-    <hr>
-    <div class="top">
-        <button class="nav" (click)="onAccount()">Account</button>
-        <p class="nav">/</p>
-        <button class="nav" (click)="onCart()">Cart</button>
-        <p class="nav">/</p>
-        <button class="nav" (click)="onLogOut()">Log Out</button>
+  </nav>
+</div>
+
+
+<!-- Dano -->
+
+<div>
+  <div class="header">
+    <h1>Store</h1>
+  </div>
+  <div *ngIf="!isCart" >
+    <div>
     </div>
   </div>
 
-    <div *ngFor="let element of products; let i = index">
-      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-      <div class="container mt-5">
-        <div class="row">
-          <div class="col-md-6 col-xl-3">
-            <div class="card items m-b-30" *ngFor="let element of products; let i = index">
-              <div class="card-body row">
-                <div class="">
-                  <p>img here</p>
+
+  <app-cart *ngIf="isCart && !isAccount"></app-cart>
+
+  <!--- CUSTOMER ACCOUNT VIEW -->
+
+
+  <div *ngIf="isAccount && !isCart">
+    <div class="header">
+      <h3>Account</h3>
+    </div>
+    <div class="card border-primary mb-3 mt-8" style="width: 500px; margin: 0 auto;">
+      <div class="card-header text-center">Your Account</div>
+      <div class="card-body text-primary text-center">
+        <label>Account Name</label>
+        <h5 class="card-title">{{email}}</h5>
+        <button type="button" class="btn btn-primary m-lg-3" (click)="onDeleteAccount()">Delete Account</button>
+        <button type="button" class="btn btn-primary" >Edit Account</button>
+      </div>
+    </div>
+    <div>
+
+    </div>
+  </div>
+
+
+
+  <!--- -->
+
+  <div style="justify-content: center;">
+    <div>
+      <div class="header">
+        <h3>Inventory</h3>
+      </div>
+
+      <div style="align-content: center">
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <div class="container mt-5" style="justify-content: center; margin: 0 auto;">
+          <div class="row">
+            <div class="col-md-6 col-xl-3">
+              <div class="card items m-b-30" *ngFor="let element of products; let i = index">
+                <div class="card-body row">
+                  <div class="">
+                    <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-model-unselect-gallery-2-202207_GEO_US?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1654893618197"
+                         style="width: 15rem; height: 15rem" alt="tech image">
+                  </div>
+                  <div class="col-6 card-title align-self-center mb-0">
+                    <h5>{{element.productName}}</h5>
+                    <p class="m-0">{{element.description}}</p>
+                  </div>
                 </div>
-                <div class="col-6 card-title align-self-center mb-0">
-                  <h5>{{element.productName}}</h5>
-                  <p class="m-0">{{element.description}}</p>
-                </div>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">${{element.defaultPrice}}</li>
-              </ul>
-              <div class="card-body">
-                <div class="float-right btn-group btn-group-sm">
-                  <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit">Add to cart</a>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">${{element.defaultPrice}}</li>
+                </ul>
+                <div class="card-body">
+                  <div class="float-right btn-group btn-group-sm">
+                    <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" (click)="addCart(i)">Add to cart</a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+
     </div>
+    <div>
 
 
-  <app-cart *ngIf="isCart && !isAccount">
-    <div class="top">
-      <button class="nav" (click)="onAccount()">Account</button>
-      <p class="nav">/</p>
-      <button class="nav" (click)="onCart()">Cart</button>
-      <p class="nav">/</p>
-      <button class="nav" (click)="onLogOut()">Log Out</button>
-    </div>
-  </app-cart>
+      <div style="justify-content: center">
+        <div class="header">
+          <h3>Cart</h3>
+        </div>
 
-  <div *ngIf="isAccount && !isCart">
-    <hr>
-    <div class="card border-primary mb-3 mt-8" style="width: 500px; margin: 0 auto;">
-      <div class="card-header text-center">Your Account</div>
-      <div class="card-body text-primary">
-        <label>Account</label>
-        <h5 class="card-title">{{email}}</h5>
-        <button type="button" class="btn btn-primary" (click)="onDeleteAccount()">Delete Account</button>
+        <div class="card border-primary mb-3" style="width: 300px; margin: 0 auto;">
+        <div class="card-header text-center">Your Cart</div>
+        <div class="card-body">
+          <div class="card mb-2" *ngFor="let element of cartProducts; let i = index" style="width: 15rem; justify-content: center">
+            <div class="card-body justify-content-center">
+              <h5>{{element.productName}}</h5>
+              <h5>${{element.defaultPrice}}</h5>
+              <h5>Q: {{element.q}}</h5>
+              <button class="btn btn-outline-primary" (click)="onDeleteCart(i)">Delete</button>
+              <div>
+                <br>
+                <h5 class="text-primary">Total: ${{totalPrice}}</h5>
+              </div>
+
+            </div>
+          </div>
+          </div>
+
+        </div>
       </div>
-    </div>
 
-
-    <div class="card border-primary mb-3 mt-8" style="width: 500px; margin: 0 auto;">
-      <div class="card-header text-center">Previous Orders</div>
-      <div class="card-body text-primary">
       </div>
     </div>
   </div>
-
-
-</div>

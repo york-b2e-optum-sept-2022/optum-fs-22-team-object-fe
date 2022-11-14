@@ -32,6 +32,7 @@ export class MainComponent implements OnInit {
     this.shopKeeper.products.subscribe({
       next: value => {
         this.products = value;
+        console.log(value);
         console.log(value)},error: err=> {console.log(err)}
 
     })

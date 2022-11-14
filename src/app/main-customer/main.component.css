@@ -1,3 +1,7 @@
+.navbar-nav {
+  margin-left: auto;
+}
+
 .header {
   text-align: center;
   font-weight: bold;
