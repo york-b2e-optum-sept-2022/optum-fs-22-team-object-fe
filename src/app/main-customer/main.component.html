@@ -104,3 +104,45 @@
     </div>
   </div>
 </div>
+
+<div>
+  <h1>SHOPPING</h1>
+  <div *ngIf="!isCart" style="display: flex; justify-content: space-around">
+    <div>
+    </div>
+    <div >
+      <button (click)="onAccount()">Account</button>
+      <button (click)="onCart()">Cart</button>
+    </div>
+  </div>
+
+
+  <app-cart *ngIf="isCart && !isAccount"></app-cart>
+
+  <div *ngIf="isAccount && !isCart">
+    <h1>Account</h1>
+    <div>
+      <h4>Email: {{email}}</h4>
+      <button (click)="onDeleteAccount()">Delete Account</button>
+    </div>
+  </div>
+
+  <div *ngFor="let element of products; let i = index" style="border: 1px solid black; width: 25rem">
+    <div>
+      <h4>
+        {{element.productName}}
+      </h4>
+      <h5>
+        ${{element.defaultPrice}}
+      </h5>
+      <h5>{{element.description}}</h5>
+    </div>
+    <button>Add to Cart</button>
+
+  </div>
+
+
+</div>
+
+
+<button (click)="onLogOut()">Log Out</button>

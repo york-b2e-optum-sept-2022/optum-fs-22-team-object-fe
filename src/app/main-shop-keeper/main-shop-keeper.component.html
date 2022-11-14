@@ -241,6 +241,7 @@
 <!--Dano-->
 <!--------------------------------------------------------------------------------------->
 <!---------------------------- CREATE Categories -------------------------------------------->
+<hr>
 <div *ngIf="!viewSwitch && !isCreate && isCreateCategory" style="padding: 1rem">
   <h1>Create Categories</h1>
   <div style="border: 1px solid black; width: 40rem; text-align: center">
@@ -249,5 +250,43 @@
     <button (click)="createCategory()">Create</button>
     <button (click)="onCancel2()"> Cancel</button>
   </div>
+</div>
 
+<div *ngIf="onCouponBoolean && viewSwitch && !isCreate && !isEdited && !isCoupons"
+     style=" display: flex; justify-content: space-around; flex-wrap: wrap" >
+  <div class="card border-primary mb-3" style="width: 300px">
+    <div class="card-header">Coupon</div>
+    <div class="card-body text-primary">
+      <label>Code</label>
+      <input class="form-control" type="text" [(ngModel)]="code">
+      <label>Start Date</label>
+      <input class="form-control" type="date" [(ngModel)]="startDate_Coupon">
+      <label>End Date</label>
+      <input class="form-control" type="date" [(ngModel)]="endDate_Coupon">
+      <label>Sale Percentage</label>
+      <input class="form-control" type="number" [(ngModel)]="sale">
+    </div>
+  </div>
+  <div>
+    <h2 class="text-primary">Products Lists To Add Coupons </h2>
+    <div *ngFor="let data of couponArray_Names">
+      <h6> - {{data}}</h6>
+    </div>
+  </div>
+</div>
+<!--------------------------------------------------------------------------------------->
+
+<div *ngIf="isCoupons && viewSwitch && !isCreate && !isEdited">
+  <h2 style="display: flex; justify-content: center">CODE </h2>
+  <hr>
+  <div *ngFor="let element of coupons_Array; let i = index" style="display: flex; justify-content: space-around; border: 1px solid black; width: 50rem; margin: 5rem">
+    <div>
+      <h3>Code:  {{element.code}}</h3>
+      <h3>Percentage:  {{element.sale}}</h3>
+    </div>
+    <div style="padding: 2rem">
+      <button (click)="onDeleteCoupons(i)">Delete</button>
+    </div>
+
+  </div>
 </div>
