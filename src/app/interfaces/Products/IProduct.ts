@@ -10,4 +10,5 @@ export interface IProduct {
   discontinued: boolean | null;
   categories: string[];
   coupons: string[];
+  q: number;
 }
