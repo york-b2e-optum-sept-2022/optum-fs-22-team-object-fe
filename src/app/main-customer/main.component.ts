@@ -3,6 +3,9 @@ import {ShopkeeperService} from "../shopkeeper.service";
 import {AdminService} from "../admin.service";
 import {IDelete} from "../interfaces/Accounts/IDelete";
 import {IProduct} from "../interfaces/Products/IProduct";
+import {IUpdateLocal} from "../interfaces/Accounts/IUpdateLocal";
+import {IAdmin} from "../interfaces/Accounts/IAdmin";
+import {IAccount} from "../interfaces/Accounts/IAccount";
 
 
 @Component({
@@ -38,10 +41,12 @@ export class MainComponent implements OnInit {
   products: IProduct[] = [];
   email: string = "";
   userID: string = "";
+  password: string = ""
   isCart: boolean = false;
   isAccount: boolean = false;
   cartProducts: IProduct[] = [];
   cartItemCount: number[] = [];
+  isEdit: boolean = false;
 
 
 
@@ -79,6 +84,17 @@ export class MainComponent implements OnInit {
   onAccount() {
     this.isCart = false;
     this.isAccount = true;
+  }
+
+  onEditAccount() {
+    const account: IAccount = {
+      this.isEdit = true,
+      email: this.email,
+      password: this.password,
+      userID: this.userID,
+    }
+
+
   }
   onDeleteAccount() {
     const account: IDelete = {

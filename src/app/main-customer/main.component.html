@@ -19,7 +19,12 @@
     <h1>Account</h1>
     <div>
       <h4>Email: {{email}}</h4>
-      <button >Edit Account</button>
+      <button (click)="onEditAccount()">Edit Account</button>
+      <div *ngIf="isEdit===true">
+        <input placeholder="email">
+        <input placehold="password">
+        <input placeholder="permission">
+      </div>
       <button (click)="onDeleteAccount()">Delete Account</button>
     </div>
     <div>

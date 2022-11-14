@@ -88,8 +88,6 @@ export class HttpService {
   }
 
 
-
-
   public addCategory(categoryLists: ICategory) {
     return this.httpClient.put("http://localhost:3000/api/product/edit/categories",categoryLists);
   }
