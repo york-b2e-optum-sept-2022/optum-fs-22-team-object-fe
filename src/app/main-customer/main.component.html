@@ -1,6 +1,6 @@
 <div>
   <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Tech Store</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -69,9 +69,9 @@
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
         <div class="container mt-5" style="justify-content: center; margin: 0 auto;">
           <div class="row">
-            <div class="col-md-6 col-xl-3">
-              <div class="card items m-b-30" *ngFor="let element of products; let i = index">
-                <div class="card-body row">
+            <div class="flex-center" style="">
+              <div class="card items m-b-30" style="width: 300px; margin-left: 10px" *ngFor="let element of products; let i = index">
+                <div class="card-body row" >
                   <div class="">
                     <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-13-model-unselect-gallery-2-202207_GEO_US?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1654893618197"
                          style="width: 15rem; height: 15rem" alt="tech image">
@@ -117,11 +117,11 @@
                 <br>
                 <h5 class="text-primary">Total: ${{totalPrice}}</h5>
               </div>
-
             </div>
           </div>
           </div>
 
+          <button class="btn btn-primary" (click)="onCart()">Check Out</button>
         </div>
       </div>
 

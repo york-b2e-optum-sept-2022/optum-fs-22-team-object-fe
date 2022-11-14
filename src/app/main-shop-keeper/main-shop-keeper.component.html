@@ -1,5 +1,22 @@
 <!--Dano-->
-<app-navigation></app-navigation>
+<div>
+  <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="#">Tech Store</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" (click)="onLogOut()">Logout</a>
+        </li>
+        <li class="nav-item">
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+
 <!--Dano-->
 <!-----------------------------THESE ARE THE DISPLAY ON THE TOP ------------------->
 <!--Dano-->
@@ -15,8 +32,6 @@
   <button class="nav" (click)="viewProduct()">Product Categories</button>
   <p class="nav">/</p>
   <button class="nav" (click)="isCreated()">Create New Products</button>
-  <p class="nav">/</p>
-  <button class="nav" (click)="onLogOut()">Log Out</button>
 </div>
 <!--Dano-->
 

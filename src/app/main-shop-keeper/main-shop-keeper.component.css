@@ -4,6 +4,10 @@
   letter-spacing: 5px;
 }
 
+.navbar-nav {
+  margin-left: auto;
+}
+
 .top {
   display: flex;
   justify-content: center;

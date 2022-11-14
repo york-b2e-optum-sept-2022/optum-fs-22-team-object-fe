@@ -1,16 +1,24 @@
-<div>
-  <h1>Check Out</h1>
-  <div *ngFor="let element of checkOutLists;" style="border: 1px solid black; width: 25rem">
-    <h4>{{element.productName}}</h4>
-    <h4>${{element.defaultPrice}}</h4>
-    <h4>{{element.description}}</h4>
-    <h4>Q: {{element.q}}</h4>
-  </div>
-  <div>
-    <h1>Total: {{totalPrice}}</h1>
-    <button (click)="onCheckOut()">Check Out</button>
-  </div>
-</div>
-
 
 <hr>
+
+<!-- card -->
+
+<div class="header">
+  <h3>Check Out</h3>
+</div>
+
+<div class="card border-primary mb-3 mt-8" style="width: 800px; margin: 0 auto;">
+  <div class="card-body">
+    <div class="card mb-2" *ngFor="let element of checkOutLists;" style="width: 15rem; justify-content: center">
+      <div class="card-body justify-content-center">
+        <h4>{{element.productName}}</h4>
+        <h4>${{element.defaultPrice}}</h4>
+        <h5>{{element.description}}</h5>
+        <h5>Q: {{element.q}}</h5>
+      </div>
+    </div>
+  </div>
+  <h2 class="text-primary">Total: ${{totalPrice}}</h2>
+  <button class="btn btn-outline-primary" (click)="onCheckOut()">Check Out</button>
+</div>
+
