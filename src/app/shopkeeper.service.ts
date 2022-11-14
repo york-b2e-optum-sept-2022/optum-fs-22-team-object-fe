@@ -1,12 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpService} from "./http.service";
-import {IProduct} from "./interfaces/IProduct";
+import {IProduct} from "./interfaces/Products/IProduct";
 import {BehaviorSubject, first, Observable, Subject} from "rxjs";
-import {ICategory} from "./interfaces/ICategory";
-import {ICoupon} from "./interfaces/ICoupon";
-import {IProductDelete} from "./interfaces/IProductDelete";
-import {ICouponReturn} from "./interfaces/ICouponReturn";
-import {ICouponDelete} from "./interfaces/ICouponDelete";
+import {ICategory} from "./interfaces/Products/ICategory";
+import {ICoupon} from "./interfaces/Coupons/ICoupon";
+import {IProductDelete} from "./interfaces/Products/IProductDelete";
+import {ICouponReturn} from "./interfaces/Coupons/ICouponReturn";
+import {ICouponDelete} from "./interfaces/Coupons/ICouponDelete";
 
 @Injectable({
   providedIn: 'root'
@@ -70,13 +70,18 @@ export class ShopkeeperService {
     this.httpService.getOneProduct(userID,productID).pipe(first()).subscribe({
       next: value => {console.log(value)},error: err => {console.log(err)}});
   }
+
+
   public getAllProducts(userID: string) {
     this.httpService.getAllProducts(userID).pipe(first()).subscribe({
       next: value => {
         this.products.next(value);
-        //console.log(value);
         },error: err => {console.log(err)}});
   }
+
+
+
+
 
   public getCoupon(userID: string, productID: string): Observable<ICouponReturn[]>  {
     // let coupons: string[] = [];

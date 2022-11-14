@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {ShopkeeperService} from "../shopkeeper.service";
 import {AdminService} from "../admin.service";
-import {IProduct} from "../interfaces/IProduct";
-import {IProductDelete} from "../interfaces/IProductDelete";
-import {ICategory} from "../interfaces/ICategory";
-import {ICoupon} from "../interfaces/ICoupon";
-import {ICouponReturn} from "../interfaces/ICouponReturn";
-import {ICouponDelete} from "../interfaces/ICouponDelete";
+import {IProduct} from "../interfaces/Products/IProduct";
+import {IProductDelete} from "../interfaces/Products/IProductDelete";
+import {ICategory} from "../interfaces/Products/ICategory";
+import {ICoupon} from "../interfaces/Coupons/ICoupon";
+import {ICouponReturn} from "../interfaces/Coupons/ICouponReturn";
+import {ICouponDelete} from "../interfaces/Coupons/ICouponDelete";
 
 @Component({
   selector: 'app-main-shop-keeper',
@@ -57,6 +57,7 @@ export class MainShopKeeperComponent implements OnInit {
   onDeleteCoupons(i: number) {
     const temp_Coupon: ICouponDelete = {
       code: this.coupons_Array[i].code,
+      // userID: this.userID,
       userID: "2641310b-01f6-4791-8215-5bad20751633",
       productIDs: [this.current_ViewUser]
     };
@@ -66,8 +67,6 @@ export class MainShopKeeperComponent implements OnInit {
       next: value => {this.coupons_Array = value},error: err => {console.log(err)} //look over this.
     })
   }
-
-
 
     products:IProduct[] = []; //arrays
     products_Array: IProduct[] = []; //display arrays

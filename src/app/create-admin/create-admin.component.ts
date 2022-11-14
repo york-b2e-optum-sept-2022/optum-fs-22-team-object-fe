@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {EPermission} from "../enum/EPermission";
 import {ShopkeeperService} from "../shopkeeper.service";
 import {Subscription} from "rxjs";
-import {IAccount} from "../interfaces/IAccount";
+import {IAccount} from "../interfaces/Accounts/IAccount";
 import {AdminService} from "../admin.service";
 
 @Component({

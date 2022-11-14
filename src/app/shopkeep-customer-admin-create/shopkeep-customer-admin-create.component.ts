@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ShopkeeperService} from "../shopkeeper.service";
-import {IAccount} from "../interfaces/IAccount";
+import {IAccount} from "../interfaces/Accounts/IAccount";
 import {EPermission} from "../enum/EPermission";
 import {AdminService} from "../admin.service";
 

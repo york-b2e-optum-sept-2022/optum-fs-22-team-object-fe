@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {IAccount} from "./interfaces/IAccount";
+import {IAccount} from "./interfaces/Accounts/IAccount";
 import {Observable} from "rxjs";
-import {IAdmin} from "./interfaces/IAdmin";
-import {IDelete} from "./interfaces/IDelete";
-import {IUpdateLocal} from "./interfaces/IUpdateLocal";
-import {IProduct} from "./interfaces/IProduct";
-import {ICategory} from "./interfaces/ICategory";
-import {ICoupon} from "./interfaces/ICoupon";
-import {IProductDelete} from "./interfaces/IProductDelete";
-import {ICouponReturn} from "./interfaces/ICouponReturn";
-import {ICouponDelete} from "./interfaces/ICouponDelete";
+import {IAdmin} from "./interfaces/Accounts/IAdmin";
+import {IDelete} from "./interfaces/Accounts/IDelete";
+import {IUpdateLocal} from "./interfaces/Accounts/IUpdateLocal";
+import {IProduct} from "./interfaces/Products/IProduct";
+import {ICategory} from "./interfaces/Products/ICategory";
+import {ICoupon} from "./interfaces/Coupons/ICoupon";
+import {IProductDelete} from "./interfaces/Products/IProductDelete";
+import {ICouponReturn} from "./interfaces/Coupons/ICouponReturn";
+import {ICouponDelete} from "./interfaces/Coupons/ICouponDelete";
 
 
 @Injectable({
